@@ -615,6 +615,57 @@ details.readmore[open] summary { margin-bottom: 1em; }
 }
 .idea-body p { margin: 0 0 1em; }
 
+/* ---- challenge hints (nested details) ---- */
+
+.challenge {
+  margin: 0 0 1.1em;
+  padding-left: 0.9em;
+  border-left: 2px dashed var(--border);
+}
+
+.challenge-label {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 0.6em;
+}
+
+.hint {
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  margin-bottom: 0.5em;
+  background: var(--bg);
+}
+
+.hint summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0.55em 1.6em 0.55em 0.8em;
+  font-size: 0.8rem;
+  color: var(--amber);
+  font-weight: bold;
+  position: relative;
+}
+.hint summary::-webkit-details-marker { display: none; }
+.hint summary::after {
+  content: "+";
+  position: absolute;
+  right: 0.7em;
+  top: 0.5em;
+  font-family: var(--font-display);
+  color: var(--text-dim);
+  font-size: 0.7rem;
+}
+.hint[open] summary::after { content: "-"; }
+
+.hint p {
+  margin: 0;
+  padding: 0 0.9em 0.8em;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
 .complete-toggle {
   display: flex;
   align-items: center;

@@ -150,6 +150,35 @@
     });
   }
 
+  /* ---------- progressive hint reveal ---------- */
+  /* Hints are all visible by default in the HTML so the page works without
+     JS. Here we hide every hint after the first, and reveal the next one
+     each time the previous is opened, turning it into a step-by-step
+     reveal instead of a flat list. */
+
+  function initHintReveal() {
+    document.querySelectorAll('.challenge').forEach(function (challenge) {
+      var hints = Array.prototype.slice.call(challenge.querySelectorAll('.hint'));
+      if (hints.length < 2) return;
+
+      hints.forEach(function (hint, index) {
+        if (index > 0 && !hint.open) hint.hidden = true;
+
+        hint.addEventListener('toggle', function () {
+          if (!hint.open) return;
+          var next = hints[index + 1];
+          if (next) next.hidden = false;
+        });
+      });
+
+      hints.forEach(function (hint) {
+        hint.addEventListener('click', function (e) {
+          e.stopPropagation();
+        });
+      });
+    });
+  }
+
   /* ---------- filters ---------- */
 
   function initFilters(scopeSelector, gridId) {
@@ -263,6 +292,7 @@
     initDatabase('taskerGrid', 'tasker');
     initFilters('.filters[data-db="ideas"]', 'ideasGrid');
     initFilters('.filters[data-db="tasker"]', 'taskerGrid');
+    initHintReveal();
     initBonusCode();
     refreshAll();
   });

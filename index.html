@@ -42,7 +42,7 @@
       <p class="terminal-line">&gt; loading workshop reference: NFC + Tasker<span class="cursor">_</span></p>
       <h1 class="hero-title">NFC :: TASKER</h1>
       <p class="hero-sub">VENTURE CAFÉ WORKSHOP REFERENCE // v1.1</p>
-      <p class="hero-tagline">This page explains how NFC tags work, how to program them, and how to combine them with Tasker for more advanced automations. It includes step-by-step instructions, difficulty ratings, and a reference list of use cases organised by category.</p>
+      <p class="hero-tagline">This page explains how NFC tags work, how to program them, and how to combine them with Tasker for more advanced automations. It includes step-by-step instructions, difficulty ratings, and a reference list of use cases organised by category. If you are at the Venture Café workshop, an NFC tag is provided; if you are reading this afterwards, any blank NFC tag will do.</p>
       <div class="hero-cta">
         <a href="#program" class="btn btn-primary">▸ START PROGRAMMING</a>
         <a href="#ideas" class="btn btn-ghost">VIEW IDEA BANK ▸</a>
@@ -87,8 +87,8 @@
 
       <ol class="steps">
         <li class="step" data-diff="basic">
-          <div class="step-head"><span class="step-num">1</span><span class="step-title">Get a blank tag</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
-          <p>NTAG213 stickers are the most common and least expensive option, suitable for links, contact cards, and Wi-Fi credentials. NTAG215 or NTAG216 suit multiple records or longer content, such as a full contact card. Blank tags are typically sold in packs of 10 to 25.</p>
+          <div class="step-head"><span class="step-num">1</span><span class="step-title">Get an NFC tag</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
+          <p>If you are at the Venture Café workshop, tags are provided, so you can skip ahead to Step 2. If you are following this guide elsewhere, NTAG213 stickers are the most common and least expensive option, suitable for links, contact cards, and Wi-Fi credentials. NTAG215 or NTAG216 suit multiple records or longer content, such as a full contact card. Blank tags are typically sold in packs of 10 to 25.</p>
         </li>
         <li class="step" data-diff="basic">
           <div class="step-head"><span class="step-num">2</span><span class="step-title">Install a writer app</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
@@ -125,7 +125,7 @@
   <section class="section" id="ideas">
     <h2 class="section-title"><span class="tag-index">03</span> NFC Idea Bank</h2>
     <div class="panel panel-database">
-      <p>A reference list of ways to use a programmed tag, organised by category and difficulty. Expand a card to read the details, then mark it complete to track progress.</p>
+      <p>A reference list of ways to use a programmed tag, organised by category and difficulty. Each entry is a small challenge: expand a card to see what it does, then try building it yourself before opening any hints. Hints reveal one at a time, so you can stop as soon as you have enough to continue. Mark a card complete to track progress.</p>
 
       <div class="gamebar" data-db="ideas">
         <div class="gamebar-rank">
@@ -160,7 +160,22 @@
           <summary><span class="idea-title">Digital Business Card</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff basic">LVL 1: 10XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>Write a Contact record containing a name, phone number, and email address. Sharing it lets someone save the contact directly by tapping, without manually entering details.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Open NFC Tools, go to the Write tab, then Add a record and choose Contact.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Fill in name, phone number, and email. Leave other fields blank unless needed, since extra fields use more of the tag's limited storage.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Tap Write, hold the tag against the back of the phone until it confirms, then test by tapping it again with the phone locked.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="s1" data-xp="10">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+10 XP)</span>
@@ -172,7 +187,22 @@
           <summary><span class="idea-title">Instant Wi-Fi Join</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff basic">LVL 1: 10XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>On Android, a Wi-Fi network record prompts the device to join the network when tapped, avoiding the need to type or read out a password. Support for this record type on iPhone is inconsistent, so test it on the phones people will actually be using.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>On an Android phone, open NFC Tools, go to Write, then Add a record and choose Wi-Fi network.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Enter the network name (SSID) and password exactly as they appear on the router, including capitalisation, and select the matching security type (usually WPA/WPA2).</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Write the tag, then test on a second Android phone. If nothing happens on an iPhone, that is expected: support for this record type is inconsistent there.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="s2" data-xp="10">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+10 XP)</span>
@@ -184,7 +214,22 @@
           <summary><span class="idea-title">Menu or Portfolio Launcher</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff basic">LVL 1: 10XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>A URL record pointing to a menu, portfolio, or booking page. Suitable for a table tent, a market stall sign, or the back of a name badge.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Open NFC Tools, go to Write, then Add a record and choose URL/URI.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Paste the full web address, including https://, and check it carefully for typos before writing, since a broken link cannot be fixed once a tag is locked.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Write the tag and test it on a phone with a browser installed.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="s3" data-xp="10">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+10 XP)</span>
@@ -196,7 +241,22 @@
           <summary><span class="idea-title">Emergency Contact Tag</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff basic">LVL 1: 10XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>A Text or URL record with emergency contact details and any relevant medical information, placed on a keychain or phone case. Most phones display tag content without requiring the phone to be unlocked.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Open NFC Tools, go to Write, then Add a record and choose Text (or URL if linking to an online medical profile instead).</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Keep the message short: a name, a relationship, and a phone number is usually enough. Avoid including anything you would not want a stranger to read, since anyone who taps the tag can see it.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Write the tag, then confirm it can still be read from a locked phone, since that is the situation it is designed for.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="s4" data-xp="10">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+10 XP)</span>
@@ -208,7 +268,22 @@
           <summary><span class="idea-title">Lost and Found Tag</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff basic">LVL 1: 10XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>A short Text record on a bag, bike, or laptop with contact details and a request to get in touch if found. No app or account is required on the finder's side.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Open NFC Tools, go to Write, then Add a record and choose Text.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Write a short message with a phone number or email address. A second contact number, such as a friend's, is a useful backup if the item is lost along with the phone that would normally read it.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Write the tag and stick it somewhere visible but low profile, such as inside a laptop lid or under a bike seat.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="s5" data-xp="10">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+10 XP)</span>
@@ -220,7 +295,22 @@
           <summary><span class="idea-title">Plant Care Instructions</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff basic">LVL 1: 10XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>A Text record with watering frequency and light requirements, attached to the pot. Useful as a reference for anyone else looking after the plant.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Open NFC Tools, go to Write, then Add a record and choose Text.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Note watering frequency, light needs, and anything else relevant, such as "rotate weekly" or "do not overwater."</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Write the tag and attach it to the pot with tape or a cable tie so it is not lost if the plant is moved.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="s6" data-xp="10">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+10 XP)</span>
@@ -232,7 +322,22 @@
           <summary><span class="idea-title">Networking Badge</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff intermediate">LVL 2: 25XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>Combine a URL record, for example a LinkedIn profile, with a Contact record on a single tag. The phone presents both options when the tag is read. Suitable for a conference badge.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Open NFC Tools, go to Write, then Add a record and choose URL/URI. Enter a link to a LinkedIn profile or personal site.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Without writing yet, tap Add a record again and choose Contact. Fill in name, phone, and email. Both records now queue up together on the same tag.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Write the tag. On read, the phone will show a chooser with both options. Test this on a couple of phone models, since chooser behaviour varies slightly by manufacturer.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="s7" data-xp="25">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+25 XP)</span>
@@ -244,7 +349,26 @@
           <summary><span class="idea-title">Meeting Room Booking Link</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff intermediate">LVL 2: 25XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>A tag by a meeting room door links to a booking page or a form with the room name pre-filled using a URL parameter, allowing availability to be checked or booked on the spot.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Set up or identify an online booking page or form that accepts the room name as a URL parameter, for example a form with a pre-fill link, or a booking tool that supports query strings.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Build the full URL with the room name included, for example a link ending in ?room=RoomA.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>In NFC Tools, go to Write, Add a record, choose URL/URI, and paste that link in.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>Write the tag, place it by the room, and test that the room name appears pre-filled when the tag is tapped.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="s8" data-xp="25">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+25 XP)</span>
@@ -256,7 +380,26 @@
           <summary><span class="idea-title">Workshop Attendance Check-in</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff intermediate">LVL 2: 25XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>A URL record linking to a check-in form near an entrance. Attendees tap on the way in, producing a timestamped attendance record without a manual roll call.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Create a check-in form that collects a name and records a timestamp automatically.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Copy the form's shareable link.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>In NFC Tools, go to Write, Add a record, choose URL/URI, and paste the form link.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>Write the tag and place it near the entrance at a comfortable tapping height.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="s9" data-xp="25">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+25 XP)</span>
@@ -268,7 +411,22 @@
           <summary><span class="idea-title">Restaurant Table Ordering</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff intermediate">LVL 2: 25XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>One tag per table, each linking to a pre-filled order page for that table. Lower cost to maintain for repeat use than reprinted QR codes.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>For each table, set up or identify an order page specific to that table, for example by including the table number in the URL.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>In NFC Tools, go to Write, Add a record, choose URL/URI, and enter that table's link.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Write one tag per table, then label each tag physically with its table number so they do not get mixed up during setup.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="s10" data-xp="25">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+25 XP)</span>
@@ -280,7 +438,26 @@
           <summary><span class="idea-title">Locked Public Information Tags</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff advanced">LVL 3: 50XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>For tags distributed to the public, such as retail packaging or event materials, write and test the content thoroughly before using the Lock tag feature so it cannot be altered afterward.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Decide what the tag should contain, typically a URL or Text record, and write it using NFC Tools as in the earlier steps.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Before locking anything, test the tag thoroughly: read it on more than one phone and confirm the content is exactly right.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>In NFC Tools, open the tag's options and select Lock tag (sometimes listed under Other or More). Confirm the warning, since this step cannot be undone.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>Test the locked tag one more time to confirm it still reads correctly and can no longer be overwritten.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="s11" data-xp="50">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+50 XP)</span>
@@ -292,7 +469,26 @@
           <summary><span class="idea-title">Equipment Check-out Log</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff advanced">LVL 3: 50XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>Tag shared equipment with a URL linking to a check-out log or spreadsheet, with the equipment ID included in the link. Anyone borrowing the item taps to log it out.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Set up a simple log, for example a spreadsheet connected to a form, or a webhook service that appends a row when it receives a request. Give each piece of equipment a short ID.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Build a URL that includes the equipment ID, for example a pre-filled form link with the ID in a query parameter.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>In NFC Tools, go to Write, Add a record, choose URL/URI, and enter that link.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>Write the tag, attach it to the equipment, and test that tapping it opens the log with the correct ID already filled in.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="s12" data-xp="50">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+50 XP)</span>
@@ -304,7 +500,22 @@
           <summary><span class="idea-title">Mug Ownership Reminder</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff basic">LVL 1: 10XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>A Text record on the bottom of a mug, for example a name and a request to return it to the kitchen after use. A lighthearted addition to normal shared-kitchen etiquette.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Open NFC Tools, go to Write, then Add a record and choose Text.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Keep it short and readable at a glance, for example a name and "please return to the kitchen."</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Write the tag and stick it to the underside of the mug, checking it will not be damaged if the mug goes in a dishwasher.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="f1" data-xp="10">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+10 XP)</span>
@@ -316,7 +527,22 @@
           <summary><span class="idea-title">Hidden Riddle Tag</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff basic">LVL 1: 10XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>A Text record containing a short riddle or clue, hidden somewhere in a shared space. Works well as an informal icebreaker at an event.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Write the riddle or clue on paper first, before opening the app. Keep it short enough to read comfortably on a phone screen.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Open NFC Tools, go to Write, Add a record, choose Text, and enter the riddle.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Write the tag and hide it somewhere findable but not obvious.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="f2" data-xp="10">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+10 XP)</span>
@@ -328,7 +554,22 @@
           <summary><span class="idea-title">High Five Counter</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff basic">LVL 1: 10XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>A URL record linking to a simple counter page. Each tap logs a high five between colleagues. Not essential, but a low-effort way to add some humour to a shared desk.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Find or set up a simple web counter, a basic page that increases a number each time it loads works fine for this.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>In NFC Tools, go to Write, Add a record, choose URL/URI, and enter the counter page's link.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Write the tag and place it somewhere shared, like next to a desk or doorway.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="f3" data-xp="10">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+10 XP)</span>
@@ -340,7 +581,22 @@
           <summary><span class="idea-title">Boss Key Tag</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff basic">LVL 1: 10XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>An App launch record (Android only) pointed at an ordinary-looking spreadsheet or document app. A familiar office joke, implemented with NFC instead of a keyboard shortcut.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>In NFC Tools, go to Write, then Add a record and choose Application. This writes an Android Application Record, which opens a specific app directly.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Select the app to launch from the list, for example a spreadsheet or notes app already installed on the phone.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Write the tag and confirm it opens the chosen app immediately. This record type does not work on iPhone.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="f4" data-xp="10">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+10 XP)</span>
@@ -352,7 +608,22 @@
           <summary><span class="idea-title">Shared Fridge Reminder</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff basic">LVL 1: 10XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>A Text record placed near a shared fridge with a reminder about labelling food or clearing out old items. A gentler alternative to a handwritten note.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Open NFC Tools, go to Write, then Add a record and choose Text.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Write a short, friendly reminder, for example about labelling containers or clearing out old food on a set day.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Write the tag and stick it on or near the fridge door at eye level.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="f5" data-xp="10">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+10 XP)</span>
@@ -364,7 +635,22 @@
           <summary><span class="idea-title">Achievement Unlocked Book Tag</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff intermediate">LVL 2: 25XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>Hide a tag in the back pages of a book being lent to a colleague. A URL record links to a page reading "Achievement Unlocked: Finished the Book," visible only to whoever reads to the end.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Set up a simple web page, even a single line of text works, that reads something like "Achievement Unlocked: Finished the Book."</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>In NFC Tools, go to Write, Add a record, choose URL/URI, and enter that page's link.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Write the tag and tuck it into the last few pages of the book, flat against the inside cover so it does not create a bulge.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="f6" data-xp="25">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+25 XP)</span>
@@ -376,7 +662,22 @@
           <summary><span class="idea-title">Team Ritual Tag</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff intermediate">LVL 2: 25XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>Two tags, held by two colleagues, both linking to the same short playlist or audio clip. Tapping either one starts a small shared ritual, for example before a presentation.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Choose a short playlist or audio clip online and copy its link, from a music streaming service or a hosted audio file.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>In NFC Tools, go to Write, Add a record, choose URL/URI, and enter that link. Repeat the process for a second tag using the same link.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Write both tags and give one to each colleague involved.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="f7" data-xp="25">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+25 XP)</span>
@@ -388,7 +689,26 @@
           <summary><span class="idea-title">Scavenger Hunt Chain</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff intermediate">LVL 2: 25XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>A set of tags placed around a venue, each with a Text clue pointing to the location of the next tag. The final tag reveals a prize or message. A reusable icebreaker for team events or workshops.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Plan the route first on paper: where each tag will be hidden and what clue leads to the next one.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>For each tag, open NFC Tools, go to Write, Add a record, choose Text, and write the clue pointing to the next tag's location.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Write and hide the tags in order, saving the final tag's clue to reveal the prize or message instead of pointing anywhere further.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>Test the full chain yourself, start to finish, before anyone else attempts it.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="f8" data-xp="25">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+25 XP)</span>
@@ -400,7 +720,22 @@
           <summary><span class="idea-title">Welcome Back Chime</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff advanced">LVL 3: 50XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>A tag at a desk or front door triggers an app-launch record (Android only) for a sound-player shortcut, playing a short chime on arrival. A minor, optional touch rather than a necessary feature.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Find or create a short sound-player shortcut, for example a specific track in a music app, or a dedicated sound-effect app that can be launched directly to play a clip.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>In NFC Tools, go to Write, then Add a record and choose Application, and select that app or shortcut.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Write the tag and place it at the desk or door. Test that it launches and plays automatically, since some apps require an extra tap once opened.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="f9" data-xp="50">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+50 XP)</span>
@@ -412,7 +747,26 @@
           <summary><span class="idea-title">Escape Room Puzzle Box</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff advanced">LVL 3: 50XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>A set of locked tags, each revealed only after solving the previous clue, with the final tag providing a code for a physical lock. More involved to design well, but works as a team activity.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Design the full sequence on paper first: how many tags, what each clue says, and what the final code unlocks.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Write each tag with a Text record containing its clue, using NFC Tools as in the earlier steps. Work backwards from the final tag so the code is decided first.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Once tested and working, lock each tag using the Lock tag option so the sequence cannot be tampered with.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>Hide the tags in order and do a full test run before treating it as finished.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="f10" data-xp="50">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+50 XP)</span>
@@ -440,6 +794,7 @@
           </ul>
           <p>Either approach requires Tasker's external access setting to be enabled, found in Tasker's preferences under the option that allows plugins or third-party apps to run tasks. The phone's NFC radio and screen also need to be on to read or write a tag.</p>
           <p><strong>One tag, two behaviours:</strong> to make a single tag behave differently depending on state, for example silencing the phone on the way out and restoring it on the way back in, store a value in a Tasker variable and add a condition in the task that checks and updates it.</p>
+          <p><strong>If nothing happens when you tap the tag:</strong> Android sometimes shows a chooser asking which app should handle it, if more than one app on the phone could respond to a tag read. Select NFC for Tasker, and choose "Always" or "Just once" depending on whether other NFC apps are also in use. If no chooser appears and nothing happens either, confirm the profile is scanned to the correct tag and that the screen was on at the moment of the tap.</p>
         </div>
       </details>
 
@@ -476,7 +831,7 @@
   <section class="section" id="tasker-ideas">
     <h2 class="section-title"><span class="tag-index">05</span> Tasker Idea Bank</h2>
     <div class="panel panel-database">
-      <p>These require Tasker and its NFC bridge, in addition to a programmed tag. Each entry lists the actions involved and its difficulty rating.</p>
+      <p>These require Tasker and its NFC bridge, in addition to a programmed tag. As with the NFC idea bank, each entry is a challenge: expand a card, try it yourself, and reveal hints one at a time if you get stuck. Hints for Tasker entries list the exact profile, task, and actions involved.</p>
 
       <div class="gamebar" data-db="tasker">
         <div class="gamebar-rank">
@@ -511,7 +866,30 @@
           <summary><span class="idea-title">Bedside Night Mode</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff intermediate">LVL 2: 25XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>One tap enables Do Not Disturb, dims the screen to minimum brightness, sets an alarm, and opens a white-noise app. Placed at a bedside table or charging point.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>In Tasker, create a new profile: Event, Plugin, NFC for Tasker. Scan the tag to filter to it, or leave it unfiltered if this is the only Tasker tag in use.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Attach a new task and name it something like "Night Mode."</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Add actions in this order: Audio, Do Not Disturb (On); Display, Display Brightness (set to a low level); Alarm, Set Alarm (set a wake time); App, Launch App (a white-noise or sleep app).</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>Grant Tasker Do Not Disturb access if prompted, under Android's special app access settings. Without it, that action fails silently.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 5</summary>
+                <p>Save the task, then test by tapping the tag with the phone unlocked and the screen on.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="t1" data-xp="25">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+25 XP)</span>
@@ -523,7 +901,26 @@
           <summary><span class="idea-title">Car Dock Routine</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff intermediate">LVL 2: 25XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>Tapping a tag mounted in a car connects Bluetooth, opens a maps app, starts a music app, and sets media volume.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Create a profile: Event, Plugin, NFC for Tasker, scanned to this specific tag.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Attach a task named "Car Mode."</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Add actions: Net, Bluetooth (Connect, choosing the car's paired device if listed); App, Launch App (a maps app); App, Launch App (a music app); Audio, Media Volume (set a level).</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>Save and test with the phone unlocked. If Bluetooth does not connect automatically, confirm the car has already been paired with the phone at least once beforehand.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="t2" data-xp="25">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+25 XP)</span>
@@ -535,7 +932,26 @@
           <summary><span class="idea-title">Work Mode Desk Tag</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff intermediate">LVL 2: 25XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>Silences notifications except from a set list of contacts, opens work apps, and starts a timer. Placed at a desk to mark the start of a focused work session.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Create a profile: Event, Plugin, NFC for Tasker, scanned to this tag.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Attach a task named "Work Mode."</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Add actions: Audio, Do Not Disturb (set to Priority Only, after configuring a priority contacts list in Android's own Do Not Disturb settings beforehand); App, Launch App (a work app); Alert, Notify (a short confirmation message).</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>Grant Do Not Disturb access to Tasker if prompted. Save and test.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="t3" data-xp="25">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+25 XP)</span>
@@ -547,7 +963,26 @@
           <summary><span class="idea-title">Gym Bag Starter</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff intermediate">LVL 2: 25XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>Opens a workout tracking app, starts a playlist, and sets volume. Attached to the inside of a gym bag.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Create a profile: Event, Plugin, NFC for Tasker, scanned to this tag.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Attach a task named "Gym Mode."</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Add actions: App, Launch App (a workout tracker); Media, Music Play or App, Launch App (a chosen playlist); Audio, Media Volume (set a level).</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>Save and test with the tag sewn or taped somewhere reachable inside the bag.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="t4" data-xp="25">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+25 XP)</span>
@@ -559,7 +994,26 @@
           <summary><span class="idea-title">Kitchen Timer Tag</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff intermediate">LVL 2: 25XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>Starts a countdown timer with a spoken announcement when it finishes, useful when hands are occupied.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Create a profile: Event, Plugin, NFC for Tasker, scanned to this tag.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Attach a task named "Kitchen Timer."</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Add actions: Alert, Wait (set to the desired countdown length); Alert, Say (enter a message such as "Timer finished").</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>Test with a short wait time first, for example 10 seconds, to confirm the spoken announcement plays, then set the real duration.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="t5" data-xp="25">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+25 XP)</span>
@@ -571,7 +1025,34 @@
           <summary><span class="idea-title">Arrival and Departure Toggle Tag</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff advanced">LVL 3: 50XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>Using the toggle logic described in the Tasker section, one tag by the front door disables Wi-Fi and enables Do Not Disturb on the first tap of the day, then reverses those settings on the next tap.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Create a profile: Event, Plugin, NFC for Tasker, scanned to this tag.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Attach a task named "Home Toggle."</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Add a Variables, Variable Set action to initialise %HomeState to "home" the first time this runs (this can be done once manually rather than every time the task runs).</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>Add a Task, If action checking whether %HomeState equals "home." Inside it, add the leaving actions (Net, Wifi Off; Audio, Do Not Disturb On) followed by a Variable Set changing %HomeState to "away."</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 5</summary>
+                <p>Add a Task, Else action, followed by the reverse actions (Net, Wifi On; Audio, Do Not Disturb Off) and a Variable Set changing %HomeState back to "home." Close with End If.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 6</summary>
+                <p>Save and test by tapping twice in a row, confirming the settings flip each time.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="t6" data-xp="50">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+50 XP)</span>
@@ -583,7 +1064,26 @@
           <summary><span class="idea-title">Time Tracking Tag</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff advanced">LVL 3: 50XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>A desk tag triggers an HTTP request action that logs a timestamp to a spreadsheet or webhook, providing a simple, self-managed time-tracking log.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Set up a destination for the log first: a spreadsheet with a connected webhook, using its built-in scripting tools, or a simple webhook-based logging service.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Create a profile: Event, Plugin, NFC for Tasker, scanned to this tag.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Attach a task named "Clock In" and add a Net, HTTP Request action: set the method to POST, the URL to the webhook address, and include the current time, using Tasker's built-in %DATE and %TIME variables, in the request body.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>Save and test, then check the spreadsheet or log to confirm the entry appeared with the correct timestamp.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="t7" data-xp="50">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+50 XP)</span>
@@ -595,7 +1095,34 @@
           <summary><span class="idea-title">Accessibility Emergency Tag</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff advanced">LVL 3: 50XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>A single, easy-to-reach tag calls a designated contact and sends a message with the current location. Intended for situations where navigating a phone's normal interface is difficult.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Create a profile: Event, Plugin, NFC for Tasker, scanned to this tag.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Attach a task named "Emergency."</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Add a Location, Get Location action first, so the current position is available to later actions.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>Add a Phone, Send SMS action to the designated contact, including the location variables from the previous step in the message body.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 5</summary>
+                <p>Add a Phone, Call action to the same contact.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 6</summary>
+                <p>Grant Tasker the phone, SMS, and location permissions it requests. Save the task, then test with a trusted contact who knows a test is coming.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="t8" data-xp="50">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+50 XP)</span>
@@ -607,7 +1134,34 @@
           <summary><span class="idea-title">Meeting Mode With Auto Revert</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff advanced">LVL 3: 50XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>Tapping when entering a meeting room silences the phone and shortens the screen timeout. The task also starts a Tasker timer that reverts those settings automatically after a set period.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Create a profile: Event, Plugin, NFC for Tasker, scanned to this tag.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Attach a task named "Meeting Mode."</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Add actions: Audio, Do Not Disturb (On); Display, Display Timeout (set to a short duration, noting the original value first so it can be restored).</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>Add an Alert, Wait action set to the meeting length.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 5</summary>
+                <p>Add the reverse actions afterward in the same task: Audio, Do Not Disturb (Off); Display, Display Timeout (set back to the original value).</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 6</summary>
+                <p>Test with a short Wait time first to confirm the revert works, then set the real duration.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="t9" data-xp="50">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+50 XP)</span>
@@ -619,7 +1173,26 @@
           <summary><span class="idea-title">Dramatic Entrance Tag</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff intermediate">LVL 2: 25XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>Tapping a tag at a desk plays a short sound clip for a few seconds. A minor addition with no real function beyond being a bit of fun.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Choose a short sound file already saved on the phone, or a track in a media app.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Create a profile: Event, Plugin, NFC for Tasker, scanned to this tag.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Attach a task and add a Media, Music Play action, or an App, Launch App action pointing at a sound app, referencing that file.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>Save and test at a reasonable volume the first time.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="t10" data-xp="25">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+25 XP)</span>
@@ -631,7 +1204,26 @@
           <summary><span class="idea-title">Snack Counter Tag</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff intermediate">LVL 2: 25XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>A tag near a shared snack cupboard increments a counter each time it is tapped, and plays a short sound after a set number of taps in a day.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Create a profile: Event, Plugin, NFC for Tasker, scanned to this tag.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Attach a task and add a Variables, Variable Add action to increase %SnackCount by 1 each time it runs.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Add a Task, If action checking whether %SnackCount equals 5 (or another chosen number), and inside it add an Alert, Say action with a short message.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>The counter keeps climbing unless it is reset. Add a second, separate profile with a Time context at midnight that runs a small task setting %SnackCount back to 0, or reset it manually.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="t11" data-xp="25">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+25 XP)</span>
@@ -643,7 +1235,30 @@
           <summary><span class="idea-title">Randomiser Mode</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff advanced">LVL 3: 50XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>One tap changes the wallpaper from a chosen folder, switches the ringtone, and sets a reminder with an unusual message. Reversible manually, though the specific combination is not logged anywhere.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Create a profile: Event, Plugin, NFC for Tasker, scanned to this tag.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Attach a task and add a File, List Files action pointing at a folder of wallpaper images, saving the result into an array variable.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Add a Variables, Variable Set action using the %RANDOM(1,X) function, where X is the number of files, to pick an index, then a Display, Set Wallpaper action referencing that array entry.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>Add an Audio, Set Ringtone action pointing at a chosen file, and an Alert, Notify action with a short reminder message.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 5</summary>
+                <p>Save and test. If the wallpaper action fails, check that Tasker has been granted storage or media access permission.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="t12" data-xp="50">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+50 XP)</span>
@@ -655,7 +1270,26 @@
           <summary><span class="idea-title">Wind Down Reminder Tag</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff advanced">LVL 3: 50XP</span><span class="badge status" hidden>COMPLETE</span></span></summary>
           <div class="idea-body">
             <p>After a set time in the evening, tapping the tag plays a short spoken reminder to wrap up for the day, using a text-to-speech action.</p>
-            <label class="complete-toggle">
+                        <div class="challenge">
+              <p class="challenge-label">Try building this yourself first. Reveal hints below if you get stuck.</p>
+              <details class="hint">
+                <summary>Hint 1</summary>
+                <p>Create a profile: Event, Plugin, NFC for Tasker, scanned to this tag.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 2</summary>
+                <p>Attach a task and add a Task, If action checking whether the built-in %TIME variable is after a chosen time, such as 22:00.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 3</summary>
+                <p>Inside the If, add an Alert, Say action with a short spoken reminder.</p>
+              </details>
+              <details class="hint">
+                <summary>Hint 4</summary>
+                <p>Test by temporarily lowering the threshold time, or changing the phone's clock, to confirm the message plays under the right condition, then set the real time and revert the clock.</p>
+              </details>
+            </div>
+<label class="complete-toggle">
               <input type="checkbox" class="complete-checkbox" data-id="t13" data-xp="50">
               <span class="checkbox-box" aria-hidden="true"></span>
               <span class="checkbox-text">Mark as complete (+50 XP)</span>
