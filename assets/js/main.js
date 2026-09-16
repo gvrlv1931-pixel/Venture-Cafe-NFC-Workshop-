@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var STORAGE_KEY = 'nfc-workshop-progress-v1';
+  var STORAGE_KEY = 'nfc-workshop-progress-v2';
   var RANKS = [
     { min: 0, name: 'Rookie Tapper' },
     { min: 0.2, name: 'Tag Technician' },
@@ -13,9 +13,9 @@
   function loadProgress() {
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
-      return raw ? JSON.parse(raw) : { unlocked: [], bonusXp: 0 };
+      return raw ? JSON.parse(raw) : { completed: [], bonusXp: 0 };
     } catch (e) {
-      return { unlocked: [], bonusXp: 0 };
+      return { completed: [], bonusXp: 0 };
     }
   }
 
@@ -60,7 +60,7 @@
     var maxXp = cards.reduce(function (sum, c) { return sum + xpOf(c); }, 0);
     var earned = cards.reduce(function (sum, c) {
       var id = c.getAttribute('data-id');
-      return progress.unlocked.indexOf(id) !== -1 ? sum + xpOf(c) : sum;
+      return progress.completed.indexOf(id) !== -1 ? sum + xpOf(c) : sum;
     }, 0);
 
     var fill = document.getElementById(dbKey + 'ProgressFill');
@@ -104,11 +104,10 @@
     updateOverall(totals);
   }
 
-  function markExploredState(card) {
-    var id = card.getAttribute('data-id');
-    if (progress.unlocked.indexOf(id) !== -1) {
-      card.classList.add('explored');
-    }
+  function setCardCompleteState(card, isComplete) {
+    var statusBadge = card.querySelector('.badge.status');
+    card.classList.toggle('complete', isComplete);
+    if (statusBadge) statusBadge.hidden = !isComplete;
   }
 
   function initDatabase(gridId, dbKey) {
@@ -118,19 +117,64 @@
     databases[dbKey] = cards;
 
     cards.forEach(function (card) {
-      markExploredState(card);
-      card.addEventListener('toggle', function () {
-        if (!card.open) return;
-        var id = card.getAttribute('data-id');
-        if (progress.unlocked.indexOf(id) === -1) {
-          progress.unlocked.push(id);
-          saveProgress(progress);
-          card.classList.add('explored');
-          var xp = xpOf(card);
-          var title = card.querySelector('.idea-title');
-          showToast('+' + xp + ' XP — ' + (title ? title.textContent : 'Idea') + ' unlocked');
-          refreshAll();
+      var id = card.getAttribute('data-id');
+      var checkbox = card.querySelector('.complete-checkbox');
+      if (!checkbox) return;
+
+      var alreadyComplete = progress.completed.indexOf(id) !== -1;
+      checkbox.checked = alreadyComplete;
+      setCardCompleteState(card, alreadyComplete);
+
+      checkbox.addEventListener('change', function () {
+        var xp = xpOf(card);
+        var title = card.querySelector('.idea-title');
+        var titleText = title ? title.textContent : 'Entry';
+        var idx = progress.completed.indexOf(id);
+
+        if (checkbox.checked && idx === -1) {
+          progress.completed.push(id);
+          showToast('+' + xp + ' XP: ' + titleText + ' marked complete');
+        } else if (!checkbox.checked && idx !== -1) {
+          progress.completed.splice(idx, 1);
+          showToast(titleText + ' marked incomplete, ' + xp + ' XP removed');
         }
+
+        saveProgress(progress);
+        setCardCompleteState(card, checkbox.checked);
+        refreshAll();
+      });
+
+      checkbox.addEventListener('click', function (e) {
+        e.stopPropagation();
+      });
+    });
+  }
+
+  /* ---------- progressive hint reveal ---------- */
+  /* Hints are all visible by default in the HTML so the page works without
+     JS. Here we hide every hint after the first, and reveal the next one
+     each time the previous is opened, turning it into a step-by-step
+     reveal instead of a flat list. */
+
+  function initHintReveal() {
+    document.querySelectorAll('.challenge').forEach(function (challenge) {
+      var hints = Array.prototype.slice.call(challenge.querySelectorAll('.hint'));
+      if (hints.length < 2) return;
+
+      hints.forEach(function (hint, index) {
+        if (index > 0 && !hint.open) hint.hidden = true;
+
+        hint.addEventListener('toggle', function () {
+          if (!hint.open) return;
+          var next = hints[index + 1];
+          if (next) next.hidden = false;
+        });
+      });
+
+      hints.forEach(function (hint) {
+        hint.addEventListener('click', function (e) {
+          e.stopPropagation();
+        });
       });
     });
   }
@@ -202,8 +246,7 @@
     var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
 
-    var cursor = el.querySelector('.cursor');
-    var full = '> booting tap-to-automate protocol';
+    var full = '> loading workshop reference: NFC + Tasker';
     el.textContent = '';
     var cursorSpan = document.createElement('span');
     cursorSpan.className = 'cursor';
@@ -215,30 +258,29 @@
         el.textContent = full.slice(0, i);
         el.appendChild(cursorSpan);
         i++;
-        setTimeout(tick, 22);
+        setTimeout(tick, 20);
       }
     }
     tick();
   }
 
-  /* ---------- konami easter egg ---------- */
+  /* ---------- konami-style bonus code (arrow keys, hidden) ---------- */
 
-  function initEasterEgg() {
-    var seq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  function initBonusCode() {
+    var seq = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
     var pos = 0;
     document.addEventListener('keydown', function (e) {
-      var key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
-      if (key === seq[pos]) {
+      if (e.key === seq[pos]) {
         pos++;
         if (pos === seq.length) {
           pos = 0;
           progress.bonusXp = (progress.bonusXp || 0) + 50;
           saveProgress(progress);
-          showToast('🛸 CHEAT CODE ACCEPTED — +50 bonus XP');
+          showToast('Bonus code accepted: +50 XP');
           refreshAll();
         }
       } else {
-        pos = (key === seq[0]) ? 1 : 0;
+        pos = (e.key === seq[0]) ? 1 : 0;
       }
     });
   }
@@ -250,7 +292,8 @@
     initDatabase('taskerGrid', 'tasker');
     initFilters('.filters[data-db="ideas"]', 'ideasGrid');
     initFilters('.filters[data-db="tasker"]', 'taskerGrid');
-    initEasterEgg();
+    initHintReveal();
+    initBonusCode();
     refreshAll();
   });
 })();
