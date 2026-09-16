@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NFC ⌁ TASKER — Venture Café Workshop Terminal</title>
+<meta name="description" content="Program NFC tags and pair them with Tasker automations. Instructions, difficulty levels, and a gamified idea database — serious and silly.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="scanlines" aria-hidden="true"></div>
+<div class="crt-vignette" aria-hidden="true"></div>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#top" class="logo">📡 NFC<span class="accent">⌁</span>TASKER</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="siteNav">
+      <a href="#intro">Intro</a>
+      <a href="#program">Program a Tag</a>
+      <a href="#ideas">Idea Bank</a>
+      <a href="#tasker">Tasker</a>
+      <a href="#tasker-ideas">Tasker Ideas</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" id="top">
+    <div class="grid-floor" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="terminal-line">&gt; booting tap-to-automate protocol<span class="cursor">_</span></p>
+      <h1 class="glitch" data-text="NFC ⌁ TASKER">NFC ⌁ TASKER</h1>
+      <p class="hero-sub">VENTURE CAFÉ WORKSHOP TERMINAL // v1.0</p>
+      <p class="hero-tagline">You brought a phone. You're about to leave with a sidekick. A one-tap sticker that opens a link, hands over your contact card, or fires an entire routine — no app to babysit, no subscription, no cloud required.</p>
+      <div class="hero-cta">
+        <a href="#program" class="btn btn-primary">▶ START PROGRAMMING</a>
+        <a href="#ideas" class="btn btn-ghost">🎮 BROWSE IDEA BANK</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="intro">
+    <h2 class="section-title"><span class="tag-index">01</span> What Is NFC + Tasker?</h2>
+    <div class="panel">
+      <p><strong>NFC (Near Field Communication)</strong> is a short-range radio standard built into almost every modern smartphone. A cheap, battery-free <strong>NFC tag</strong> — a coin-sized sticker with a tiny chip and antenna — can store a small piece of data. Tap your phone against it, and your phone reads that data instantly: a web link, a contact card, a Wi-Fi password, or a trigger for a whole automation.</p>
+      <p><strong>Tasker</strong> is an Android automation app that goes far beyond "open this link." Pair it with an NFC tag and a single tap can silence your phone, launch three apps, send a message, and set a timer — all at once, all offline.</p>
+
+      <details class="readmore">
+        <summary>▸ Read more: how NFC and Tasker actually work under the hood</summary>
+        <div class="readmore-body">
+          <h3>The physics (short version)</h3>
+          <p>NFC tags are <strong>passive</strong> — they have no battery. Your phone's NFC antenna (usually on the upper back, near the camera) emits a small electromagnetic field at <strong>13.56 MHz</strong>. When a tag enters that field, the field itself powers the chip just long enough to transmit its stored data back to the phone. Range is tiny by design — a few centimetres — which is what makes it deliberate and secure: you can't "tap" something by accident from across a room.</p>
+
+          <h3>What's actually stored</h3>
+          <p>Data is written in a standard format called <strong>NDEF</strong> (NFC Data Exchange Format), organised into records — a URI record, a Text record, a Contact (vCard) record, a Wi-Fi credentials record, and so on. A tag can hold multiple records, read in order. Cheap "sticker" chips come in a few common sizes:</p>
+          <ul>
+            <li><strong>NTAG213</strong> — ~144 bytes usable (~137 for NDEF). Plenty for one URL or a short text.</li>
+            <li><strong>NTAG215</strong> — ~504 bytes (~492 usable). Room for a vCard or a couple of records.</li>
+            <li><strong>NTAG216</strong> — ~888 bytes (~868 usable). Multiple records, longer text, Smart Posters.</li>
+          </ul>
+
+          <h3>Reading a tag: Android vs iPhone</h3>
+          <p>On Android, just tap — with the screen on and NFC enabled, the system reads the tag and hands the data to the right app automatically (no app needs to be open first for basic records). On iPhone, background tag reading works out of the box on iPhone XS and later; older models (7 through X) need the Control Centre NFC shortcut or an app to start the scan. Either way, no special app is required just to <em>read</em> a simple link or text tag.</p>
+
+          <h3>Where Tasker fits in</h3>
+          <p>Tasker is Android-only. Here's the part most tutorials skip: <strong>Tasker cannot register itself as the system's NFC tag handler</strong> — only a small set of apps are allowed to catch that "a tag was just read" event. So Tasker relies on a lightweight bridge app (like <em>NFC for Tasker</em>) that <em>is</em> allowed to catch it, and hands the event over to a Tasker profile. It's one extra app to install, not a limitation of the sticker itself. Full setup is in the <a href="#tasker">Tasker section</a> below.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section" id="program">
+    <h2 class="section-title"><span class="tag-index">02</span> Programme an NFC Tag</h2>
+    <div class="panel">
+      <p>You need two things: a blank NFC tag, and a free writer app. That's it. Here's the full path from blank sticker to working tag.</p>
+
+      <ol class="steps">
+        <li class="step" data-diff="beginner">
+          <div class="step-head"><span class="step-num">1</span><span class="step-title">Get a blank tag</span><span class="diff-badge beginner">🟢 BEGINNER</span></div>
+          <p>Buy a pack of <strong>NTAG213</strong> stickers for basics (links, contact cards, Wi-Fi) — they're the cheapest and most common. Go for <strong>NTAG215/216</strong> if you plan to pack in multiple records or a full vCard. Sold in bulk for roughly the price of a coffee for a pack of 10–25.</p>
+        </li>
+        <li class="step" data-diff="beginner">
+          <div class="step-head"><span class="step-num">2</span><span class="step-title">Install a writer app</span><span class="diff-badge beginner">🟢 BEGINNER</span></div>
+          <p><strong>NFC Tools</strong> (free, Android &amp; iOS) is the standard all-rounder — reads, writes, clones, and locks tags, with a clean record builder. It's the app referenced throughout this page.</p>
+        </li>
+        <li class="step" data-diff="beginner">
+          <div class="step-head"><span class="step-num">3</span><span class="step-title">Choose a record type</span><span class="diff-badge beginner">🟢 BEGINNER</span></div>
+          <p>In NFC Tools, go to <em>Write &gt; Add a record</em>. Beginner-friendly types: <strong>URL/URI</strong>, <strong>Text</strong>, <strong>Contact</strong>. Fill it in and tap <em>OK</em>.</p>
+        </li>
+        <li class="step" data-diff="intermediate">
+          <div class="step-head"><span class="step-num">4</span><span class="step-title">Level up the record (optional)</span><span class="diff-badge intermediate">🟡 INTERMEDIATE</span></div>
+          <p>Try a <strong>Wi-Fi network</strong> record (auto-joins guests), an <strong>App launch</strong> record (opens a specific app), or stack <strong>multiple records</strong> on one tag (phone shows a chooser on tap).</p>
+        </li>
+        <li class="step" data-diff="beginner">
+          <div class="step-head"><span class="step-num">5</span><span class="step-title">Write it</span><span class="diff-badge beginner">🟢 BEGINNER</span></div>
+          <p>Tap <em>Write</em>, then hold the <strong>back/upper-back of your phone</strong> against the tag for 1–2 seconds until you get a success buzz or confirmation. Tag layout varies by phone — if nothing happens, slowly slide the tag around the back of the phone.</p>
+        </li>
+        <li class="step" data-diff="beginner">
+          <div class="step-head"><span class="step-num">6</span><span class="step-title">Test it</span><span class="diff-badge beginner">🟢 BEGINNER</span></div>
+          <p>Lock your phone and tap the tag again, for real — writing and reading use slightly different phone positioning, and it's the only way to know it'll work for someone else's phone too.</p>
+        </li>
+        <li class="step" data-diff="advanced">
+          <div class="step-head"><span class="step-num">7</span><span class="step-title">Lock the tag (optional, irreversible)</span><span class="diff-badge advanced">🔴 ADVANCED</span></div>
+          <p>NFC Tools' <em>Lock tag</em> option permanently write-protects it — nobody (including you) can overwrite it after. Good for tags you're handing out publicly; skip it while you're still experimenting.</p>
+        </li>
+      </ol>
+
+      <div class="callout">
+        💡 <strong>Tip:</strong> label your tags physically (a small sticker or marker note) once you've got a few going — from the outside, a blank tag and a programmed one look identical.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="ideas">
+    <h2 class="section-title"><span class="tag-index">03</span> NFC Idea Bank</h2>
+    <div class="panel panel-database">
+      <p>A tappable database of what to actually <em>do</em> with a tag — filter by vibe and difficulty, then tap a card to expand it. Every idea you open earns XP toward your rank.</p>
+
+      <div class="gamebar" data-db="ideas">
+        <div class="gamebar-rank">
+          <span class="rank-label">RANK:</span>
+          <span class="rank-name" id="ideasRankName">Rookie Tapper</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="ideasProgressFill"></div>
+        </div>
+        <div class="gamebar-xp"><span id="ideasXpValue">0</span> / <span id="ideasXpMax">0</span> XP</div>
+      </div>
+
+      <div class="filters" data-db="ideas">
+        <div class="filter-group">
+          <span class="filter-label">Vibe:</span>
+          <button class="filter-btn active" data-filter-type="category" data-filter-value="all">All</button>
+          <button class="filter-btn" data-filter-type="category" data-filter-value="serious">💼 Serious</button>
+          <button class="filter-btn" data-filter-type="category" data-filter-value="silly">🎉 Silly</button>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">Difficulty:</span>
+          <button class="filter-btn active" data-filter-type="difficulty" data-filter-value="all">All</button>
+          <button class="filter-btn" data-filter-type="difficulty" data-filter-value="beginner">🟢 Beginner</button>
+          <button class="filter-btn" data-filter-type="difficulty" data-filter-value="intermediate">🟡 Intermediate</button>
+          <button class="filter-btn" data-filter-type="difficulty" data-filter-value="advanced">🔴 Advanced</button>
+        </div>
+      </div>
+
+      <div class="card-grid" id="ideasGrid" data-db="ideas">
+
+        <details class="idea-card" data-category="serious" data-difficulty="beginner" data-xp="10" data-id="s1">
+          <summary><span class="idea-title">Digital Business Card</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff beginner">🟢 10XP</span></span></summary>
+          <div class="idea-body"><p>Write a <strong>Contact</strong> record with your name, number, and email. Hand someone your card, business card, or lanyard tag and they tap to save you as a contact — no typing, no missed digits.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="beginner" data-xp="10" data-id="s2">
+          <summary><span class="idea-title">Instant Wi-Fi Join</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff beginner">🟢 10XP</span></span></summary>
+          <div class="idea-body"><p>A <strong>Wi-Fi network</strong> record lets guests join your network with one tap — no reading the password off a whiteboard. Great stuck to the router or the guest table at an event.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="beginner" data-xp="10" data-id="s3">
+          <summary><span class="idea-title">Menu / Portfolio Launcher</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff beginner">🟢 10XP</span></span></summary>
+          <div class="idea-body"><p>A <strong>URL</strong> record pointed at your menu, portfolio, or booking page. Stick it on a table tent, a market stall, or the back of a name badge.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="beginner" data-xp="10" data-id="s4">
+          <summary><span class="idea-title">In-Case-of-Emergency Tag</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff beginner">🟢 10XP</span></span></summary>
+          <div class="idea-body"><p>On a keychain or the back of a phone case: a <strong>Text</strong> or <strong>URL</strong> record with emergency contact info and any critical medical notes. Works even if the phone finding it is locked — most phones show the tag content without unlocking.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="beginner" data-xp="10" data-id="s5">
+          <summary><span class="idea-title">Lost &amp; Found Tag</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff beginner">🟢 10XP</span></span></summary>
+          <div class="idea-body"><p>On a bike, bag, or laptop: a short <strong>Text</strong> record — "If found, please call/text [number]. Reward offered!" No account, no app, no tracking required on the finder's end.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="beginner" data-xp="10" data-id="s6">
+          <summary><span class="idea-title">Plant Care Cheat Sheet</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff beginner">🟢 10XP</span></span></summary>
+          <div class="idea-body"><p>Tag the pot with watering schedule and light needs. Useful for you, essential for whoever's plant-sitting.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="intermediate" data-xp="25" data-id="s7">
+          <summary><span class="idea-title">Networking Badge</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff intermediate">🟡 25XP</span></span></summary>
+          <div class="idea-body"><p>Stack a <strong>URL</strong> record (LinkedIn) and a <strong>Contact</strong> record on one tag — the phone shows a chooser on tap. Laminate it into your conference badge and skip the "let me find your LinkedIn" fumble entirely.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="intermediate" data-xp="25" data-id="s8">
+          <summary><span class="idea-title">Meeting Room Check-In</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff intermediate">🟡 25XP</span></span></summary>
+          <div class="idea-body"><p>Tag by the door links to a booking page or a form pre-filled with the room name (pass it as a URL query parameter). Anyone can check availability or book on the spot.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="intermediate" data-xp="25" data-id="s9">
+          <summary><span class="idea-title">Classroom / Workshop Attendance</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff intermediate">🟡 25XP</span></span></summary>
+          <div class="idea-body"><p>A URL record to a check-in form (Google Form, spreadsheet webhook) by the door. Attendees tap on the way in — instant, timestamped attendance with no roll call.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="intermediate" data-xp="25" data-id="s10">
+          <summary><span class="idea-title">Restaurant Table Ordering</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff intermediate">🟡 25XP</span></span></summary>
+          <div class="idea-body"><p>One tag per table, each linking to that table's pre-filled order page. Cheaper to deploy than QR codes for regulars, and nobody screenshots and reuses last week's tag.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="advanced" data-xp="50" data-id="s11">
+          <summary><span class="idea-title">Locked Public Info Tags</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff advanced">🔴 50XP</span></span></summary>
+          <div class="idea-body"><p>For tags you're distributing to the public (retail packaging, museum exhibits, event swag), write the content, test thoroughly, then <strong>lock</strong> it. Locked tags can't be overwritten by a prankster's phone later.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="advanced" data-xp="50" data-id="s12">
+          <summary><span class="idea-title">Asset / Equipment Log</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff advanced">🔴 50XP</span></span></summary>
+          <div class="idea-body"><p>Tag equipment (tools, AV gear, loaner laptops) with a URL to a check-out log or spreadsheet webhook with the asset ID baked into the link. Anyone who borrows it taps to log it out — no spreadsheet hunting.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="silly" data-difficulty="beginner" data-xp="10" data-id="f1">
+          <summary><span class="idea-title">Wizard's Coffee Mug</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff beginner">🟢 10XP</span></span></summary>
+          <div class="idea-body"><p>Under your mug: a Text record reading "Touch this mug again and I turn you into a toad. — Management." Purely decorative. Mostly.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="silly" data-difficulty="beginner" data-xp="10" data-id="f2">
+          <summary><span class="idea-title">Riddle in the Bathroom</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff beginner">🟢 10XP</span></span></summary>
+          <div class="idea-body"><p>Tag by the mirror with a Text record riddle. Bonus points if solving it requires tapping a second tag hidden somewhere else in the building.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="silly" data-difficulty="beginner" data-xp="10" data-id="f3">
+          <summary><span class="idea-title">High-Five Counter Meme</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff beginner">🟢 10XP</span></span></summary>
+          <div class="idea-body"><p>URL record pointing to a simple counter page. Every tap "officially" logs a high-five between you and whoever taps it. Entirely pointless. Deeply satisfying.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="silly" data-difficulty="beginner" data-xp="10" data-id="f4">
+          <summary><span class="idea-title">"Boss Key" Under the Desk</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff beginner">🟢 10XP</span></span></summary>
+          <div class="idea-body"><p>App-launch record pointed at the most boring-looking spreadsheet app you own. Tap when someone walks past. Instant plausible deniability.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="silly" data-difficulty="beginner" data-xp="10" data-id="f5">
+          <summary><span class="idea-title">Fridge Judgement Tag</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff beginner">🟢 10XP</span></span></summary>
+          <div class="idea-body"><p>Text record: "Again? Really?" Stick it right where the snacks are. Passive-aggressive, but make it technology.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="silly" data-difficulty="intermediate" data-xp="25" data-id="f6">
+          <summary><span class="idea-title">Achievement Unlocked (Book Easter Egg)</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff intermediate">🟡 25XP</span></span></summary>
+          <div class="idea-body"><p>Hide a tag in the back of a book you're lending out. URL record links to a fake "🏆 Achievement Unlocked: Finished the Book" page. Only the friends who actually finish it will find it.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="silly" data-difficulty="intermediate" data-xp="25" data-id="f7">
+          <summary><span class="idea-title">Secret Handshake Tag</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff intermediate">🟡 25XP</span></span></summary>
+          <div class="idea-body"><p>Two friends, two tags, same inside-joke playlist link written to both. Tap either one to start the "ritual." Bonus points for hiding them somewhere only you two know.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="silly" data-difficulty="intermediate" data-xp="25" data-id="f8">
+          <summary><span class="idea-title">Scavenger Hunt Chain</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff intermediate">🟡 25XP</span></span></summary>
+          <div class="idea-body"><p>Multiple tags around a venue, each a Text clue pointing to the next tag's hiding spot. Last tag reveals the prize. Great party or team-building icebreaker — and reusable indefinitely.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="silly" data-difficulty="advanced" data-xp="50" data-id="f9">
+          <summary><span class="idea-title">Welcome Home Fanfare</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff advanced">🔴 50XP</span></span></summary>
+          <div class="idea-body"><p>By the front door: a multi-record tag that opens an app <em>and</em> a URL — configure the app to be a sound-player shortcut so walking in the door triggers a tiny victory fanfare. Entirely unnecessary. Extremely good morale.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="silly" data-difficulty="advanced" data-xp="50" data-id="f10">
+          <summary><span class="idea-title">Escape Room in a Drawer</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff advanced">🔴 50XP</span></span></summary>
+          <div class="idea-body"><p>Build a locked-tag puzzle box: several tags, each unlocked (found) only after solving the last one, final tag reveals a code for an actual physical lock. Genuinely difficult to build well — that's the point.</p></div>
+        </details>
+
+      </div>
+      <p class="empty-state" id="ideasEmptyState" hidden>No ideas match those filters — try widening your search.</p>
+    </div>
+  </section>
+
+  <section class="section" id="tasker">
+    <h2 class="section-title"><span class="tag-index">04</span> Level Up With Tasker</h2>
+    <div class="panel">
+      <p><strong>Tasker</strong> (Android only) turns your phone into a programmable machine: profiles made of a <em>trigger</em> (context) and an <em>action</em> (task). Paired with NFC, a single tap can run an entire routine instead of just opening a link.</p>
+
+      <details class="readmore">
+        <summary>▸ Read more: how NFC and Tasker connect</summary>
+        <div class="readmore-body">
+          <p>As covered above, Tasker can't catch the system's raw "tag was read" event by itself — Android restricts that to a small set of apps. Two reliable bridges:</p>
+          <ul>
+            <li><strong>NFC for Tasker</strong> (free plugin) — gives Tasker a proper <em>Event → Plugin → NFC for Tasker</em> trigger. Configure it to fire on any tag, or scan a specific tag once to filter to just that one. This is the right choice for building real profiles with conditions, variables, and multi-step tasks.</li>
+            <li><strong>NFC Tools' "Task" record + NFC Tasks</strong> (free companion app) — write a tag that names one specific Tasker task directly; tapping it runs that task with zero profile setup on the Tasker side. Faster for a single one-off tag, less flexible for branching logic.</li>
+          </ul>
+          <p>Either route needs Tasker's <em>external access / "allow all apps"</em> permission switched on (in Tasker's own preferences) so the bridge app is allowed to launch tasks. Also: both the phone's <strong>NFC radio and screen must be on</strong> to read or write a tag — Tasker can't wake NFC from a fully asleep phone.</p>
+          <p><strong>One tag, two behaviours:</strong> want the same tag to silence your phone on the way out and restore it on the way back in? Store a toggle in a Tasker variable (e.g. <code>%HomeState</code>) and add an <em>If</em> condition in the task that checks and flips it. One sticker, two outcomes, depending on state.</p>
+        </div>
+      </details>
+
+      <h3 class="subhead">Setting It Up</h3>
+      <ol class="steps">
+        <li class="step" data-diff="beginner">
+          <div class="step-head"><span class="step-num">1</span><span class="step-title">Install Tasker + NFC for Tasker</span><span class="diff-badge beginner">🟢 BEGINNER</span></div>
+          <p>Both from the Play Store. Tasker has a small one-time cost or trial; NFC for Tasker is free.</p>
+        </li>
+        <li class="step" data-diff="beginner">
+          <div class="step-head"><span class="step-num">2</span><span class="step-title">Enable external access</span><span class="diff-badge beginner">🟢 BEGINNER</span></div>
+          <p>In Tasker: <em>Menu → Preferences → Misc → Allow External Access</em>. Without this, plugins can't fire tasks.</p>
+        </li>
+        <li class="step" data-diff="beginner">
+          <div class="step-head"><span class="step-num">3</span><span class="step-title">Create the profile</span><span class="diff-badge beginner">🟢 BEGINNER</span></div>
+          <p><em>New Profile → Event → Plugin → NFC for Tasker</em>. Tap the edit (pencil) icon, then <em>Scan tag</em> to filter to one specific tag, or leave it open to catch any tag.</p>
+        </li>
+        <li class="step" data-diff="intermediate">
+          <div class="step-head"><span class="step-num">4</span><span class="step-title">Build the task</span><span class="diff-badge intermediate">🟡 INTERMEDIATE</span></div>
+          <p>Attach a new Task and stack actions — Wi-Fi toggle, volume/DND, launch app, send message, HTTP request, whatever the routine needs. Order matters; drag to reorder.</p>
+        </li>
+        <li class="step" data-diff="beginner">
+          <div class="step-head"><span class="step-num">5</span><span class="step-title">Test with screen on</span><span class="diff-badge beginner">🟢 BEGINNER</span></div>
+          <p>Tap the tag with the screen unlocked to confirm the profile fires. Check Tasker's run log if it doesn't.</p>
+        </li>
+        <li class="step" data-diff="advanced">
+          <div class="step-head"><span class="step-num">6</span><span class="step-title">Add toggle logic</span><span class="diff-badge advanced">🔴 ADVANCED</span></div>
+          <p>Introduce a Tasker variable to track state, and an <em>If</em> action to branch the task — turning one static tag into a two-way (or multi-way) switch.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="tasker-ideas">
+    <h2 class="section-title"><span class="tag-index">05</span> Tasker Idea Bank</h2>
+    <div class="panel panel-database">
+      <p>These need Tasker (and its NFC bridge) — full automations, not just a link. Clearly marked, clearly ranked.</p>
+
+      <div class="gamebar" data-db="tasker">
+        <div class="gamebar-rank">
+          <span class="rank-label">RANK:</span>
+          <span class="rank-name" id="taskerRankName">Rookie Tapper</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="taskerProgressFill"></div>
+        </div>
+        <div class="gamebar-xp"><span id="taskerXpValue">0</span> / <span id="taskerXpMax">0</span> XP</div>
+      </div>
+
+      <div class="filters" data-db="tasker">
+        <div class="filter-group">
+          <span class="filter-label">Vibe:</span>
+          <button class="filter-btn active" data-filter-type="category" data-filter-value="all">All</button>
+          <button class="filter-btn" data-filter-type="category" data-filter-value="serious">💼 Serious</button>
+          <button class="filter-btn" data-filter-type="category" data-filter-value="silly">🎉 Silly</button>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">Difficulty:</span>
+          <button class="filter-btn active" data-filter-type="difficulty" data-filter-value="all">All</button>
+          <button class="filter-btn" data-filter-type="difficulty" data-filter-value="beginner">🟢 Beginner</button>
+          <button class="filter-btn" data-filter-type="difficulty" data-filter-value="intermediate">🟡 Intermediate</button>
+          <button class="filter-btn" data-filter-type="difficulty" data-filter-value="advanced">🔴 Advanced</button>
+        </div>
+      </div>
+
+      <div class="card-grid" id="taskerGrid" data-db="tasker">
+
+        <details class="idea-card" data-category="serious" data-difficulty="intermediate" data-xp="25" data-id="t1">
+          <summary><span class="idea-title">Bedside "Night Mode"</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff intermediate">🟡 25XP</span></span></summary>
+          <div class="idea-body"><p>One tap: enable Do Not Disturb, dim brightness to minimum, set an alarm, launch a white-noise app. Tag it to your nightstand or charger.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="intermediate" data-xp="25" data-id="t2">
+          <summary><span class="idea-title">Car Dock Routine</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff intermediate">🟡 25XP</span></span></summary>
+          <div class="idea-body"><p>Tap the tag mounted in your car: connects Bluetooth, opens Maps, launches your music app, and sets media volume — before you've even put the phone in the holder.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="intermediate" data-xp="25" data-id="t3">
+          <summary><span class="idea-title">"Work Mode" Desk Tag</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff intermediate">🟡 25XP</span></span></summary>
+          <div class="idea-body"><p>Silences everything except priority contacts, opens your work apps, and starts a Pomodoro timer task. One tap between "arriving" and "focused."</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="intermediate" data-xp="25" data-id="t4">
+          <summary><span class="idea-title">Gym Bag Starter</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff intermediate">🟡 25XP</span></span></summary>
+          <div class="idea-body"><p>Tag sewn into your gym bag: launches your workout tracker, starts a playlist, and sets volume — logged the moment you tap, not five minutes into your warm-up.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="intermediate" data-xp="25" data-id="t5">
+          <summary><span class="idea-title">Kitchen Timer Tag</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff intermediate">🟡 25XP</span></span></summary>
+          <div class="idea-body"><p>Tap on the way to the oven: starts a countdown timer with a spoken announcement when it's done, hands-free — genuinely handy when your hands are covered in flour.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="advanced" data-xp="50" data-id="t6">
+          <summary><span class="idea-title">Arrive / Leave Toggle Tag</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff advanced">🔴 50XP</span></span></summary>
+          <div class="idea-body"><p>One tag by the front door, using the toggle-logic pattern from the Tasker section: first tap of the day disables Wi-Fi and enables mobile data + DND for "away"; next tap reverses it for "home." No second tag needed.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="advanced" data-xp="50" data-id="t7">
+          <summary><span class="idea-title">Tap-to-Clock-In</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff advanced">🔴 50XP</span></span></summary>
+          <div class="idea-body"><p>Desk tag triggers an HTTP request action that logs a timestamp to a spreadsheet or webhook — a self-built, zero-cost time-tracking system.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="advanced" data-xp="50" data-id="t8">
+          <summary><span class="idea-title">One-Tap Emergency Call + Location</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff advanced">🔴 50XP</span></span></summary>
+          <div class="idea-body"><p>Built for accessibility: a single large, easy-to-reach tag calls a designated contact <em>and</em> texts them current location — useful for a caregiver situation or anyone who finds touchscreen menus difficult under stress.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="serious" data-difficulty="advanced" data-xp="50" data-id="t9">
+          <summary><span class="idea-title">Meeting Mode with Auto-Revert</span><span class="badges"><span class="badge cat serious">SERIOUS</span><span class="badge diff advanced">🔴 50XP</span></span></summary>
+          <div class="idea-body"><p>Tap entering a meeting room: silences the phone and shortens screen timeout. Task also starts a Tasker timer that auto-reverts settings after a set duration, so you don't have to remember to tap out.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="silly" data-difficulty="intermediate" data-xp="25" data-id="t10">
+          <summary><span class="idea-title">Villain Entrance Tag</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff intermediate">🟡 25XP</span></span></summary>
+          <div class="idea-body"><p>Tap it walking through the door: plays dramatic music at full volume for 5 seconds, then stops. No further explanation offered to roommates.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="silly" data-difficulty="intermediate" data-xp="25" data-id="t11">
+          <summary><span class="idea-title">Snack Alarm</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff intermediate">🟡 25XP</span></span></summary>
+          <div class="idea-body"><p>Fridge tag increments a Tasker variable each tap. After the 5th snack of the day, it plays a text-to-speech guilt trip instead of just logging silently.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="silly" data-difficulty="advanced" data-xp="50" data-id="t12">
+          <summary><span class="idea-title">Gremlin Mode</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff advanced">🔴 50XP</span></span></summary>
+          <div class="idea-body"><p>One chaotic tap: randomises the wallpaper from a folder, switches the ringtone to something absurd, and sets a goofy voice reminder for later. Reversible only by remembering what you changed.</p></div>
+        </details>
+
+        <details class="idea-card" data-category="silly" data-difficulty="advanced" data-xp="50" data-id="t13">
+          <summary><span class="idea-title">Bedtime Nag Tag</span><span class="badges"><span class="badge cat silly">SILLY</span><span class="badge diff advanced">🔴 50XP</span></span></summary>
+          <div class="idea-body"><p>Tap the tag after 10pm and Tasker checks the time — if it's late, a text-to-speech voice sternly suggests you go to sleep instead of doing whatever you tapped the tag for.</p></div>
+        </details>
+
+      </div>
+      <p class="empty-state" id="taskerEmptyState" hidden>No ideas match those filters — try widening your search.</p>
+    </div>
+  </section>
+
+  <section class="section footer-cta">
+    <div class="panel panel-center">
+      <h2 class="section-title-center">🏆 Total Progress</h2>
+      <div class="gamebar" data-db="overall">
+        <div class="gamebar-rank">
+          <span class="rank-label">OVERALL RANK:</span>
+          <span class="rank-name" id="overallRankName">Rookie Tapper</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="overallProgressFill"></div>
+        </div>
+        <div class="gamebar-xp"><span id="overallXpValue">0</span> / <span id="overallXpMax">0</span> XP</div>
+      </div>
+      <p class="footer-hint">Progress is saved locally in this browser. Explore every card to hit <strong>Tap Master</strong>.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Built for the Venture Café NFC + Tasker workshop. Tap responsibly.</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
