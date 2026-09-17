@@ -7,7 +7,7 @@
   --border: #2b2f35;
   --border-soft: #1c1f24;
   --text: #d7dadd;
-  --text-dim: #868c93;
+  --text-dim: #a9afb6;
   --amber: #ffb300;
   --amber-dim: rgba(255, 179, 0, 0.12);
   --green: #3ecf6c;
@@ -301,6 +301,16 @@ body {
 
 .panel p { margin: 0 0 1em; }
 .panel p:last-child { margin-bottom: 0; }
+
+.panel code, .readmore-body code, .step code {
+  background: var(--bg);
+  border: 1px solid var(--border-soft);
+  border-radius: 2px;
+  padding: 0.1em 0.4em;
+  font-size: 0.92em;
+  color: var(--amber);
+  word-break: break-word;
+}
 
 .subhead {
   font-family: var(--font-display);
