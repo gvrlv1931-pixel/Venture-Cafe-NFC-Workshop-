@@ -220,6 +220,51 @@
     apply();
   }
 
+  /* ---------- troubleshooting search ---------- */
+  /* Each phone category is a collapsible <details class="readmore">. Typing
+     a query filters the <li> items inside all of them, force-opens any
+     category with a match so results are visible without an extra click,
+     and hides categories with no match at all. Clearing the box restores
+     the default collapsed state. */
+
+  function initTroubleshootingSearch() {
+    var input = document.getElementById('tsSearchInput');
+    var section = document.getElementById('troubleshooting');
+    if (!input || !section) return;
+
+    var categories = Array.prototype.slice.call(section.querySelectorAll('details.readmore[data-ts-category]'));
+    var emptyState = document.getElementById('tsSearchEmpty');
+
+    function apply() {
+      var query = input.value.trim().toLowerCase();
+      var totalVisible = 0;
+
+      categories.forEach(function (cat) {
+        var items = Array.prototype.slice.call(cat.querySelectorAll('li'));
+        var visibleInCat = 0;
+
+        items.forEach(function (li) {
+          var matches = query === '' || li.textContent.toLowerCase().indexOf(query) !== -1;
+          li.hidden = !matches;
+          if (matches) visibleInCat++;
+        });
+
+        cat.hidden = query !== '' && visibleInCat === 0;
+        if (query !== '') {
+          if (visibleInCat > 0) cat.open = true;
+        } else {
+          cat.open = false;
+        }
+
+        totalVisible += visibleInCat;
+      });
+
+      if (emptyState) emptyState.hidden = !(query !== '' && totalVisible === 0);
+    }
+
+    input.addEventListener('input', apply);
+  }
+
   /* ---------- nav toggle ---------- */
 
   function initNav() {
@@ -293,6 +338,7 @@
     initFilters('.filters[data-db="ideas"]', 'ideasGrid');
     initFilters('.filters[data-db="tasker"]', 'taskerGrid');
     initHintReveal();
+    initTroubleshootingSearch();
     initBonusCode();
     refreshAll();
   });

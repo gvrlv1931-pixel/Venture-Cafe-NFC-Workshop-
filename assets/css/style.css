@@ -375,6 +375,65 @@ details.readmore[open] summary { margin-bottom: 1em; }
   margin-right: 0.6em;
 }
 
+/* ---- search input ---- */
+
+.ts-search {
+  margin: 1.4em 0;
+}
+
+.search-input {
+  display: block;
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.75em 0.9em;
+  border-radius: var(--radius);
+  margin-top: 0.4em;
+}
+.search-input::placeholder { color: var(--text-dim); }
+.search-input:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+.ts-search-empty {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin: 0.8em 0 0;
+}
+
+/* ---- glossary ---- */
+
+.glossary {
+  margin-top: 1.4em;
+  padding: 1.2em 1.4em;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg-alt);
+}
+
+.glossary-title {
+  font-weight: bold;
+  color: var(--amber);
+  margin: 0 0 1em;
+}
+
+.glossary dl { margin: 0 0 1em; }
+.glossary dt {
+  font-weight: bold;
+  color: var(--text);
+  margin-top: 0.8em;
+}
+.glossary dt:first-child { margin-top: 0; }
+.glossary dd {
+  margin: 0.2em 0 0;
+  color: var(--text);
+}
+.glossary p:last-child { margin: 0; }
+
 /* ---- steps ---- */
 
 .steps {

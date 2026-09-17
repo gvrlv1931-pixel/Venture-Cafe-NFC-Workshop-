@@ -133,34 +133,50 @@
         <span class="callout-tag">CHECK FIRST</span> If nothing happens at all when you tap, confirm NFC is switched on in the phone's settings before anything else. It ships turned off on a lot of Android phones, and Airplane Mode silently disables it on every phone.
       </div>
 
-      <div class="readmore-body">
-        <h3>General, any phone</h3>
-        <ul>
-          <li><strong>NFC has to be on.</strong> See the callout above. On Android this is a setting that can be off by default; on iPhone it is always on unless Airplane Mode is active.</li>
-          <li><strong>Metal blocks and interferes with the signal.</strong> A metal phone case, a case with a metal kickstand or MagSafe ring, an RFID-blocking wallet, a stack of credit cards, or even the tag resting on a metal desk can weaken or fully block the field. Take the tag and phone away from metal and try again.</li>
-          <li><strong>Stacked tags or cards confuse the reader.</strong> If the tag is inside a wallet or card holder next to other NFC/RFID cards, the phone may not be able to isolate a single signal. Pull the tag out on its own and test it separately.</li>
-          <li><strong>The antenna isn't where you think it is.</strong> Its position on the back of the phone varies by model and isn't always centred. If nothing happens, slowly slide the tag across the whole back of the phone rather than holding it in one spot.</li>
-          <li><strong>Hold it steady for a second or two.</strong> A read needs the tag to sit in the field briefly; tapping and pulling away too fast can interrupt it, especially through a case.</li>
-          <li><strong>Check the distance.</strong> NFC only works within a few centimetres. A thick case, wallet, or pop-socket can add just enough distance to push the tag out of range.</li>
-          <li><strong>A tag that used to work and now doesn't</strong> may have been locked (Step 7 in Program an NFC Tag, which is permanent), overwritten with something else, or physically damaged. Re-check it with the writer app's Read function.</li>
-        </ul>
-
-        <h3>iPhone</h3>
-        <ul>
-          <li><strong>iPhone XS and later</strong> read tags in the background automatically, no app needs to be open, and there is no separate NFC toggle to hunt for. If it isn't working, the most likely causes are Airplane Mode, metal interference, or the tag being out of range or unsupported (see below).</li>
-          <li><strong>iPhone 7, 8, and X</strong> cannot read tags in the background. Add the NFC Tag Reader control once, in Settings, then Control Centre, then Customise Controls, then open it from Control Centre each time and hold the tag near the top of the phone, close to the camera, not the middle of the back.</li>
-          <li><strong>Unsupported record types are silently ignored.</strong> iOS does not support Android's App Launch record type, so a tag written with one will do nothing on iPhone. Use a URL or Text record instead, or build an equivalent using the Shortcuts app.</li>
-          <li><strong>A tap on a locked screen queues the action but may not open it immediately.</strong> That's expected: unlock the phone to see the result, it isn't a failed read.</li>
-        </ul>
-
-        <h3>Android</h3>
-        <ul>
-          <li><strong>Turn NFC on</strong> under Settings, then Connected devices, then Connection preferences, then NFC (wording and location vary by manufacturer, for example Samsung uses Settings, then Connections, then NFC and contactless payments). Many phones also let you add an NFC quick-settings tile for a faster on/off toggle.</li>
-          <li><strong>Battery saver modes disable NFC on some phones.</strong> If reads stop working intermittently, check whether a power-saving mode is active.</li>
-          <li><strong>A "Complete action using" chooser</strong> means more than one app can handle the tag. Pick the one you want, choosing "Always" to stop being asked, or "Just once" to keep being asked each time. For a Tasker tag, choose NFC for Tasker.</li>
-          <li><strong>For Tasker specifically:</strong> if the profile never seems to fire, confirm Tasker's external access setting is on (Preferences, then Misc), which is required for any plugin, including NFC for Tasker, to run a task. See the <a href="#tasker">Tasker section</a> for the full setup.</li>
-        </ul>
+      <div class="ts-search">
+        <label for="tsSearchInput" class="filter-label">Search troubleshooting</label>
+        <input type="search" id="tsSearchInput" class="search-input" placeholder="e.g. metal, locked screen, chooser, external access…" autocomplete="off">
+        <p class="ts-search-empty" id="tsSearchEmpty" hidden>No matches for that. Try a different word, or just browse the categories below.</p>
       </div>
+
+      <details class="readmore" data-ts-category>
+        <summary>General, any phone</summary>
+        <div class="readmore-body">
+          <ul>
+            <li><strong>NFC has to be on.</strong> See the callout above. On Android this is a setting that can be off by default; on iPhone it is always on unless Airplane Mode is active.</li>
+            <li><strong>Metal blocks and interferes with the signal.</strong> A metal phone case, a case with a metal kickstand or MagSafe ring, an RFID-blocking wallet, a stack of credit cards, or even the tag resting on a metal desk can weaken or fully block the field. Take the tag and phone away from metal and try again.</li>
+            <li><strong>Stacked tags or cards confuse the reader.</strong> If the tag is inside a wallet or card holder next to other NFC/RFID cards, the phone may not be able to isolate a single signal. Pull the tag out on its own and test it separately.</li>
+            <li><strong>The antenna isn't where you think it is.</strong> Its position on the back of the phone varies by model and isn't always centred. If nothing happens, slowly slide the tag across the whole back of the phone rather than holding it in one spot.</li>
+            <li><strong>Hold it steady for a second or two.</strong> A read needs the tag to sit in the field briefly; tapping and pulling away too fast can interrupt it, especially through a case.</li>
+            <li><strong>Check the distance.</strong> NFC only works within a few centimetres. A thick case, wallet, or pop-socket can add just enough distance to push the tag out of range.</li>
+            <li><strong>A tag that used to work and now doesn't</strong> may have been locked (Step 7 in Program an NFC Tag, which is permanent), overwritten with something else, or physically damaged. Re-check it with the writer app's Read function.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="readmore" data-ts-category>
+        <summary>iPhone</summary>
+        <div class="readmore-body">
+          <ul>
+            <li><strong>iPhone XS and later</strong> read tags in the background automatically, no app needs to be open, and there is no separate NFC toggle to hunt for. If it isn't working, the most likely causes are Airplane Mode, metal interference, or the tag being out of range or unsupported (see below).</li>
+            <li><strong>iPhone 7, 8, and X</strong> cannot read tags in the background. Add the NFC Tag Reader control once, in Settings, then Control Centre, then Customise Controls, then open it from Control Centre each time and hold the tag near the top of the phone, close to the camera, not the middle of the back.</li>
+            <li><strong>Unsupported record types are silently ignored.</strong> iOS does not support Android's App Launch record type, so a tag written with one will do nothing on iPhone. Use a URL or Text record instead, or build an equivalent using the Shortcuts app.</li>
+            <li><strong>A tap on a locked screen queues the action but may not open it immediately.</strong> That's expected: unlock the phone to see the result, it isn't a failed read.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="readmore" data-ts-category>
+        <summary>Android</summary>
+        <div class="readmore-body">
+          <ul>
+            <li><strong>Turn NFC on</strong> under Settings, then Connected devices, then Connection preferences, then NFC (wording and location vary by manufacturer, for example Samsung uses Settings, then Connections, then NFC and contactless payments). Many phones also let you add an NFC quick-settings tile for a faster on/off toggle.</li>
+            <li><strong>Battery saver modes disable NFC on some phones.</strong> If reads stop working intermittently, check whether a power-saving mode is active.</li>
+            <li><strong>A "Complete action using" chooser</strong> means more than one app can handle the tag. Pick the one you want, choosing "Always" to stop being asked, or "Just once" to keep being asked each time. For a Tasker tag, choose NFC for Tasker.</li>
+            <li><strong>For Tasker specifically:</strong> if the profile never seems to fire, confirm Tasker's external access setting is on (Preferences, then Misc), which is required for any plugin, including NFC for Tasker, to run a task. See the <a href="#tasker">Tasker section</a> for the full setup.</li>
+          </ul>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -851,7 +867,24 @@
   <section class="section" id="tasker">
     <h2 class="section-title"><span class="tag-index">05</span> Tasker Automation</h2>
     <div class="panel">
-      <p>Tasker (Android only) uses profiles made of a trigger, called a context, and an action, called a task. Paired with NFC, a tag read can act as the trigger for a task containing several actions.</p>
+      <p>Tasker (Android only) uses profiles made of a trigger, called a context, and an action, called a task. Paired with NFC, a tag read can act as the trigger for a task containing several actions. Tasker's own vocabulary is the main obstacle here, not the app itself, so the glossary below is worth reading before the steps.</p>
+
+      <div class="glossary" id="tasker-glossary">
+        <p class="glossary-title">Tasker in plain English</p>
+        <dl>
+          <dt>Profile</dt>
+          <dd>One complete rule: "when this happens, do that." This is the thing you're building overall.</dd>
+          <dt>Context</dt>
+          <dd>The "when this happens" half of the rule — what has to occur before anything runs. On this page that's always a tag being tapped, sometimes combined with a time window.</dd>
+          <dt>Task</dt>
+          <dd>The "do that" half — a named, saved list of steps. You build it once, give it a name, and Tasker remembers it.</dd>
+          <dt>Action</dt>
+          <dd>One single step inside a task, such as "turn on Wi-Fi" or "read this text aloud." A task is usually several actions run one after another, top to bottom.</dd>
+          <dt>Plugin</dt>
+          <dd>A separate app, such as NFC for Tasker, that adds extra options into Tasker's own menus. Without the plugin installed, Tasker has no way to know a tag was tapped at all.</dd>
+        </dl>
+        <p>Along the bottom of the Tasker app are four tabs. <strong>Profiles</strong> and <strong>Tasks</strong> are two views of the same rules: Profiles groups them by what triggers them, Tasks lists the saved step-lists on their own so they can be reused across profiles. <strong>Vars</strong> is where variables, meaning named values Tasker remembers, can be created and checked directly, without running anything. <strong>Scenes</strong> is not used anywhere on this page.</p>
+      </div>
 
       <details class="readmore">
         <summary>Read more: connecting NFC tags to Tasker</summary>
@@ -867,31 +900,43 @@
         </div>
       </details>
 
+      <div class="callout">
+        <span class="callout-tag">NEW TO TASKER</span> Build something tiny first. Do Steps 1 through 7 below with a single action, such as making the phone say "hello," before attempting a multi-step task like the ones in Worked Examples. Confirming the wiring works end to end takes a minute; untangling a ten-action task that never ran once takes a lot longer.
+      </div>
+
       <h3 class="subhead">Setting It Up</h3>
       <ol class="steps">
         <li class="step" data-diff="basic">
           <div class="step-head"><span class="step-num">1</span><span class="step-title">Install Tasker and NFC for Tasker</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
-          <p>Both are available on the Play Store. Tasker is a paid app with a one-time cost; NFC for Tasker is a separate plugin.</p>
+          <p>Search the Play Store for both and install them: <strong>Tasker</strong> (a paid app, one-time cost, no subscription) and <strong>NFC for Tasker</strong> (a free plugin). Install both before continuing — nothing below works without the plugin, even though the plugin does nothing on its own without Tasker.</p>
         </li>
         <li class="step" data-diff="basic">
-          <div class="step-head"><span class="step-num">2</span><span class="step-title">Enable external access</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
-          <p>In Tasker, open Preferences, then Misc, and enable the option that allows external apps or plugins to run tasks.</p>
+          <div class="step-head"><span class="step-num">2</span><span class="step-title">Turn on external access</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
+          <p>Open Tasker, tap the menu icon in the top-right corner (three dots, or three lines depending on your version), then tap <strong>Preferences</strong>. Along the top of that screen, switch to the <strong>Misc</strong> tab, then turn on <strong>Allow External Access</strong>. This one setting is what lets any plugin, including NFC for Tasker, actually run a task. Skip it and tapping the tag will look like nothing happened at all, with no error to explain why.</p>
         </li>
         <li class="step" data-diff="basic">
-          <div class="step-head"><span class="step-num">3</span><span class="step-title">Create the profile</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
-          <p>Select New Profile, then Event, Plugin, NFC for Tasker. Open its settings and either scan a specific tag to filter to it, or leave it unfiltered to respond to any tag.</p>
+          <div class="step-head"><span class="step-num">3</span><span class="step-title">Start a new profile</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
+          <p>Make sure you're on the <strong>Profiles</strong> tab at the bottom of the screen, then tap the <strong>+</strong> button in the bottom-right corner. A list of context categories appears.</p>
+        </li>
+        <li class="step" data-diff="basic">
+          <div class="step-head"><span class="step-num">4</span><span class="step-title">Point it at the plugin</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
+          <p>From that list, tap <strong>Event</strong>, then <strong>Plugin</strong>, then <strong>NFC for Tasker</strong>. This tells the profile that its context, its "when this happens," is a tag being read through the plugin, rather than a time of day or a location.</p>
         </li>
         <li class="step" data-diff="intermediate">
-          <div class="step-head"><span class="step-num">4</span><span class="step-title">Build the task</span><span class="diff-badge intermediate">LEVEL 2: INTERMEDIATE</span></div>
-          <p>Attach a new task and add actions in order, for example toggling Wi-Fi, adjusting volume, launching an app, or sending an HTTP request.</p>
+          <div class="step-head"><span class="step-num">5</span><span class="step-title">Scan the tag</span><span class="diff-badge intermediate">LEVEL 2: INTERMEDIATE</span></div>
+          <p>Tasker opens NFC for Tasker's own settings screen. Tap the pencil (edit) icon, then <strong>Scan Tag</strong>, then hold the tag against the back of the phone the same way you did to write it. Once it registers, tap the back arrow in the top-left corner twice to return to Tasker; this saves the tag as the profile's trigger. Leaving it unscanned instead makes the profile fire on any tag whatsoever, which is rarely what you want once more than one tag is in play.</p>
+        </li>
+        <li class="step" data-diff="intermediate">
+          <div class="step-head"><span class="step-num">6</span><span class="step-title">Name and build the task</span><span class="diff-badge intermediate">LEVEL 2: INTERMEDIATE</span></div>
+          <p>Tasker now asks for a task: tap <strong>New</strong>, type a short name such as "Night Mode," and tap the checkmark. This opens the task editor, currently empty. Tap its own <strong>+</strong> button to add the first action, pick a category (for example Alert, App, Audio, or Net), then the specific action inside it, fill in whatever fields it asks for, and tap the checkmark or back arrow to save that one action. Tap <strong>+</strong> again for each further action; they run top to bottom in the order you add them. When the list is complete, tap the back arrow once more to save the whole task.</p>
         </li>
         <li class="step" data-diff="basic">
-          <div class="step-head"><span class="step-num">5</span><span class="step-title">Test with the screen on</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
-          <p>Tap the tag with the phone unlocked to confirm the profile runs as expected. Check Tasker's run log if it does not.</p>
+          <div class="step-head"><span class="step-num">7</span><span class="step-title">Test it, screen on and unlocked</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
+          <p>Tap the tag and confirm the task runs as expected. If nothing happens, open the menu icon, then <strong>Run Log</strong>, which shows exactly what Tasker attempted and where it stopped. The two most common causes are the profile not being scanned to that specific tag (back to Step 5), or external access still being off (back to Step 2).</p>
         </li>
         <li class="step" data-diff="advanced">
-          <div class="step-head"><span class="step-num">6</span><span class="step-title">Add conditional logic</span><span class="diff-badge advanced">LEVEL 3: ADVANCED</span></div>
-          <p>Introduce a Tasker variable to store state, and an If action to branch the task, turning a single tag into a two-way or multi-way switch.</p>
+          <div class="step-head"><span class="step-num">8</span><span class="step-title">Add conditional logic (optional)</span><span class="diff-badge advanced">LEVEL 3: ADVANCED</span></div>
+          <p>Not needed for a single straightforward tag. Introduce a Tasker variable to store state, and an If action inside the task to branch what happens, turning one tag into a two-way or multi-way switch. The Advanced example in <a href="#examples">Worked Examples</a> below builds a version of this from scratch, using two profiles instead of an If action.</p>
         </li>
       </ol>
     </div>
@@ -900,7 +945,7 @@
   <section class="section" id="examples">
     <h2 class="section-title"><span class="tag-index">06</span> Worked Examples: Word of the Day</h2>
     <div class="panel">
-      <p>One idea, built three times at increasing difficulty: a tag that looks up the word of the day. The Basic version needs only a phone and a tag. The Intermediate version has Tasker read it aloud. The Advanced version moves on to a different tag entirely, one that decides where to navigate based on the time and day. Each one is written out click by click rather than as hints to reveal, since these are meant to be followed directly.</p>
+      <p>One idea, built three times at increasing difficulty: a tag that looks up the word of the day. The Basic version needs only a phone and a tag. The Intermediate version has Tasker read it aloud. The Advanced version moves on to a different tag entirely, one that decides where to navigate based on the time and day. Each one is written out click by click rather than as hints to reveal, since these are meant to be followed directly. If a term like "profile" or "action" doesn't mean anything yet, see <a href="#tasker-glossary">Tasker in Plain English</a> first.</p>
 
       <h3 class="subhead">Basic: look up the word of the day (NFC only)</h3>
       <p>A single URL record. Tapping the tag opens today's word straight in the browser, no app setup beyond NFC Tools.</p>
@@ -1039,7 +1084,7 @@
   <section class="section" id="tasker-ideas">
     <h2 class="section-title"><span class="tag-index">07</span> Tasker Idea Bank</h2>
     <div class="panel panel-database">
-      <p>These require Tasker and its NFC bridge, in addition to a programmed tag. As with the NFC idea bank, each entry is a challenge: expand a card, try it yourself, and reveal hints one at a time if you get stuck. Hints for Tasker entries list the exact profile, task, and actions involved.</p>
+      <p>These require Tasker and its NFC bridge, in addition to a programmed tag. As with the NFC idea bank, each entry is a challenge: expand a card, try it yourself, and reveal hints one at a time if you get stuck. Hints for Tasker entries list the exact profile, task, and actions involved; see <a href="#tasker-glossary">Tasker in Plain English</a> if those words are still unfamiliar.</p>
 
       <div class="gamebar" data-db="tasker">
         <div class="gamebar-rank">
