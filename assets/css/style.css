@@ -203,7 +203,7 @@ body {
 }
 
 .hero-tagline {
-  color: var(--text-dim);
+  color: var(--text);
   font-size: 1.05rem;
   max-width: 620px;
   margin: 0 auto 2em;
@@ -425,7 +425,7 @@ details.readmore[open] summary { margin-bottom: 1em; }
   color: var(--text);
 }
 
-.step p { margin: 0; color: var(--text-dim); }
+.step p { margin: 0; color: var(--text); }
 
 /* ---- difficulty badges ---- */
 
@@ -621,7 +621,7 @@ details.readmore[open] summary { margin-bottom: 1em; }
 
 .idea-body {
   padding: 0 1.1em 1.1em;
-  color: var(--text-dim);
+  color: var(--text);
 }
 .idea-body p { margin: 0 0 1em; }
 
@@ -672,7 +672,7 @@ details.readmore[open] summary { margin-bottom: 1em; }
 .hint p {
   margin: 0;
   padding: 0 0.9em 0.8em;
-  color: var(--text-dim);
+  color: var(--text);
   font-size: 0.85rem;
 }
 
