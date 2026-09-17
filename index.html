@@ -27,8 +27,10 @@
     <nav class="site-nav" id="siteNav">
       <a href="#intro">Intro</a>
       <a href="#program">Program a Tag</a>
+      <a href="#troubleshooting">Troubleshooting</a>
       <a href="#ideas">Idea Bank</a>
       <a href="#tasker">Tasker</a>
+      <a href="#examples">Worked Examples</a>
       <a href="#tasker-ideas">Tasker Ideas</a>
     </nav>
   </div>
@@ -122,8 +124,48 @@
     </div>
   </section>
 
+  <section class="section" id="troubleshooting">
+    <h2 class="section-title"><span class="tag-index">03</span> Troubleshooting</h2>
+    <div class="panel">
+      <p>NFC is short-range and physical, so most problems come down to the tag and the phone not being close enough, aligned enough, or clear enough of interference, not a broken tag. Work through the general list first, then check the section for your phone.</p>
+
+      <div class="callout">
+        <span class="callout-tag">CHECK FIRST</span> If nothing happens at all when you tap, confirm NFC is switched on in the phone's settings before anything else. It ships turned off on a lot of Android phones, and Airplane Mode silently disables it on every phone.
+      </div>
+
+      <div class="readmore-body">
+        <h3>General, any phone</h3>
+        <ul>
+          <li><strong>NFC has to be on.</strong> See the callout above. On Android this is a setting that can be off by default; on iPhone it is always on unless Airplane Mode is active.</li>
+          <li><strong>Metal blocks and interferes with the signal.</strong> A metal phone case, a case with a metal kickstand or MagSafe ring, an RFID-blocking wallet, a stack of credit cards, or even the tag resting on a metal desk can weaken or fully block the field. Take the tag and phone away from metal and try again.</li>
+          <li><strong>Stacked tags or cards confuse the reader.</strong> If the tag is inside a wallet or card holder next to other NFC/RFID cards, the phone may not be able to isolate a single signal. Pull the tag out on its own and test it separately.</li>
+          <li><strong>The antenna isn't where you think it is.</strong> Its position on the back of the phone varies by model and isn't always centred. If nothing happens, slowly slide the tag across the whole back of the phone rather than holding it in one spot.</li>
+          <li><strong>Hold it steady for a second or two.</strong> A read needs the tag to sit in the field briefly; tapping and pulling away too fast can interrupt it, especially through a case.</li>
+          <li><strong>Check the distance.</strong> NFC only works within a few centimetres. A thick case, wallet, or pop-socket can add just enough distance to push the tag out of range.</li>
+          <li><strong>A tag that used to work and now doesn't</strong> may have been locked (Step 7 in Program an NFC Tag, which is permanent), overwritten with something else, or physically damaged. Re-check it with the writer app's Read function.</li>
+        </ul>
+
+        <h3>iPhone</h3>
+        <ul>
+          <li><strong>iPhone XS and later</strong> read tags in the background automatically, no app needs to be open, and there is no separate NFC toggle to hunt for. If it isn't working, the most likely causes are Airplane Mode, metal interference, or the tag being out of range or unsupported (see below).</li>
+          <li><strong>iPhone 7, 8, and X</strong> cannot read tags in the background. Add the NFC Tag Reader control once, in Settings, then Control Centre, then Customise Controls, then open it from Control Centre each time and hold the tag near the top of the phone, close to the camera, not the middle of the back.</li>
+          <li><strong>Unsupported record types are silently ignored.</strong> iOS does not support Android's App Launch record type, so a tag written with one will do nothing on iPhone. Use a URL or Text record instead, or build an equivalent using the Shortcuts app.</li>
+          <li><strong>A tap on a locked screen queues the action but may not open it immediately.</strong> That's expected: unlock the phone to see the result, it isn't a failed read.</li>
+        </ul>
+
+        <h3>Android</h3>
+        <ul>
+          <li><strong>Turn NFC on</strong> under Settings, then Connected devices, then Connection preferences, then NFC (wording and location vary by manufacturer, for example Samsung uses Settings, then Connections, then NFC and contactless payments). Many phones also let you add an NFC quick-settings tile for a faster on/off toggle.</li>
+          <li><strong>Battery saver modes disable NFC on some phones.</strong> If reads stop working intermittently, check whether a power-saving mode is active.</li>
+          <li><strong>A "Complete action using" chooser</strong> means more than one app can handle the tag. Pick the one you want, choosing "Always" to stop being asked, or "Just once" to keep being asked each time. For a Tasker tag, choose NFC for Tasker.</li>
+          <li><strong>For Tasker specifically:</strong> if the profile never seems to fire, confirm Tasker's external access setting is on (Preferences, then Misc), which is required for any plugin, including NFC for Tasker, to run a task. See the <a href="#tasker">Tasker section</a> for the full setup.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="ideas">
-    <h2 class="section-title"><span class="tag-index">03</span> NFC Idea Bank</h2>
+    <h2 class="section-title"><span class="tag-index">04</span> NFC Idea Bank</h2>
     <div class="panel panel-database">
       <p>A reference list of ways to use a programmed tag, organised by category and difficulty. Each entry is a small challenge: expand a card to see what it does, then try building it yourself before opening any hints. Hints reveal one at a time, so you can stop as soon as you have enough to continue. Mark a card complete to track progress.</p>
 
@@ -780,7 +822,7 @@
   </section>
 
   <section class="section" id="tasker">
-    <h2 class="section-title"><span class="tag-index">04</span> Tasker Automation</h2>
+    <h2 class="section-title"><span class="tag-index">05</span> Tasker Automation</h2>
     <div class="panel">
       <p>Tasker (Android only) uses profiles made of a trigger, called a context, and an action, called a task. Paired with NFC, a tag read can act as the trigger for a task containing several actions.</p>
 
@@ -828,8 +870,147 @@
     </div>
   </section>
 
+  <section class="section" id="examples">
+    <h2 class="section-title"><span class="tag-index">06</span> Worked Examples: Word of the Day</h2>
+    <div class="panel">
+      <p>One idea, built three times at increasing difficulty: a tag that looks up the word of the day. The Basic version needs only a phone and a tag. The Intermediate version has Tasker read it aloud. The Advanced version moves on to a different tag entirely, one that decides where to navigate based on the time and day. Each one is written out click by click rather than as hints to reveal, since these are meant to be followed directly.</p>
+
+      <h3 class="subhead">Basic: look up the word of the day (NFC only)</h3>
+      <p>A single URL record. Tapping the tag opens today's word straight in the browser, no app setup beyond NFC Tools.</p>
+      <ol class="steps">
+        <li class="step" data-diff="basic">
+          <div class="step-head"><span class="step-num">1</span><span class="step-title">Open NFC Tools and go to Write</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
+          <p>Open the app, then tap the <strong>Write</strong> tab at the bottom of the screen.</p>
+        </li>
+        <li class="step" data-diff="basic">
+          <div class="step-head"><span class="step-num">2</span><span class="step-title">Add a URL record</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
+          <p>Tap <strong>Add a record</strong>, then choose <strong>URL/URI</strong> from the list of record types.</p>
+        </li>
+        <li class="step" data-diff="basic">
+          <div class="step-head"><span class="step-num">3</span><span class="step-title">Enter the address</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
+          <p>Type <code>https://www.merriam-webster.com/word-of-the-day</code> into the address field, then tap <strong>OK</strong> to add it to the write queue.</p>
+        </li>
+        <li class="step" data-diff="basic">
+          <div class="step-head"><span class="step-num">4</span><span class="step-title">Write the tag</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
+          <p>Tap <strong>Write</strong> at the bottom of the screen, then hold the back of the phone against the tag for one to two seconds until it confirms.</p>
+        </li>
+        <li class="step" data-diff="basic">
+          <div class="step-head"><span class="step-num">5</span><span class="step-title">Test it</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
+          <p>Lock the phone, then tap the tag again. It should open the browser directly on that day's word.</p>
+        </li>
+      </ol>
+
+      <h3 class="subhead">Intermediate: the same idea, read aloud by Tasker</h3>
+      <p>Android and Tasker only. This one fetches the page in the background and speaks the word instead of showing it, so it needs a fresh, blank tag rather than the one from the Basic example above: a tag already carrying a URL record competes with Tasker for the "complete action using" chooser (see <a href="#troubleshooting">Troubleshooting</a>), so keep this tag free of any NFC Tools records and let Tasker be the only thing that responds to it.</p>
+      <ol class="steps">
+        <li class="step" data-diff="basic">
+          <div class="step-head"><span class="step-num">1</span><span class="step-title">Confirm the basics are in place</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
+          <p>Tasker and NFC for Tasker are installed, and Tasker's external access is switched on (Preferences, then Misc). See <a href="#tasker">Tasker Automation</a> if this isn't done yet.</p>
+        </li>
+        <li class="step" data-diff="intermediate">
+          <div class="step-head"><span class="step-num">2</span><span class="step-title">Create the profile</span><span class="diff-badge intermediate">LEVEL 2: INTERMEDIATE</span></div>
+          <p>Open Tasker, go to the <strong>Profiles</strong> tab, tap <strong>+</strong>, then <strong>Event</strong>, then <strong>Plugin</strong>, then <strong>NFC for Tasker</strong>. Tap the pencil/edit icon, then <strong>Scan Tag</strong>, and tap the blank tag against the phone to filter the profile to it.</p>
+        </li>
+        <li class="step" data-diff="intermediate">
+          <div class="step-head"><span class="step-num">3</span><span class="step-title">Attach a new task</span><span class="diff-badge intermediate">LEVEL 2: INTERMEDIATE</span></div>
+          <p>Tasker prompts for a task name. Type <strong>Word of the Day</strong> and tap the checkmark.</p>
+        </li>
+        <li class="step" data-diff="intermediate">
+          <div class="step-head"><span class="step-num">4</span><span class="step-title">Fetch the page</span><span class="diff-badge intermediate">LEVEL 2: INTERMEDIATE</span></div>
+          <p>Tap <strong>+</strong> to add an action, then <strong>Net</strong>, then <strong>HTTP Request</strong>. Set Method to <strong>GET</strong> and URL to <code>https://www.merriam-webster.com/word-of-the-day</code>, then tap the back arrow to save the action. Tasker stores the response text in its built-in <code>%HTTPD</code> variable automatically.</p>
+        </li>
+        <li class="step" data-diff="intermediate">
+          <div class="step-head"><span class="step-num">5</span><span class="step-title">Copy the result into your own variable</span><span class="diff-badge intermediate">LEVEL 2: INTERMEDIATE</span></div>
+          <p>Add another action: <strong>Variables</strong>, then <strong>Variable Set</strong>. Set Name to <code>%WOTD</code> and To to <code>%HTTPD</code>, then save. Keeping a copy in a variable you named yourself makes the next step easier to re-run if you need to adjust it later.</p>
+        </li>
+        <li class="step" data-diff="advanced">
+          <div class="step-head"><span class="step-num">6</span><span class="step-title">Trim it down to just the word</span><span class="diff-badge advanced">LEVEL 3: ADVANCED</span></div>
+          <p>Add: <strong>Variables</strong>, then <strong>Variable Search Replace</strong>. Variable: <code>%WOTD</code>. Turn on <strong>Use Regex</strong> and <strong>Replace Matches</strong>. Search: <code>Word of the Day: ([^&lt;|]+)</code>. Replace With: <code>%1</code>. Save. This matches the word in the page's title text and replaces the whole variable with just the captured word.</p>
+        </li>
+        <li class="step" data-diff="intermediate">
+          <div class="step-head"><span class="step-num">7</span><span class="step-title">Say it</span><span class="diff-badge intermediate">LEVEL 2: INTERMEDIATE</span></div>
+          <p>Add: <strong>Alert</strong>, then <strong>Say</strong>. Text: <code>Today's word of the day is %WOTD</code>. Save the action, then save the task.</p>
+        </li>
+        <li class="step" data-diff="basic">
+          <div class="step-head"><span class="step-num">8</span><span class="step-title">Test it</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
+          <p>With the phone connected to the internet and unlocked, tap the tag and wait a second or two for the request to finish before it speaks.</p>
+        </li>
+      </ol>
+      <div class="callout">
+        <span class="callout-tag">NOTE</span> Step 6 depends on the exact wording of the page's title, which the site could change at any time. If the task stops saying anything, open the same page in a browser, check its title or view its page source for how the word is presented now, and adjust the search pattern to match. This is the same skill as the general troubleshooting steps above, just applied to a webpage instead of a tag.
+      </div>
+
+      <h3 class="subhead">Advanced: navigate home or to work automatically</h3>
+      <p>Android and Tasker only, and a third tag: mount this one in the car, with no NFC Tools records written to it, same reasoning as the Intermediate example. One tag, two Tasker profiles that each combine the tag with a time window, so tapping it does something different depending on when you tap it: on a weekday morning it starts navigation to work, in the early evening it starts navigation home.</p>
+
+      <p><strong>Set the two addresses once</strong></p>
+      <ol class="steps">
+        <li class="step" data-diff="intermediate">
+          <div class="step-head"><span class="step-num">1</span><span class="step-title">Create a Home address variable</span><span class="diff-badge intermediate">LEVEL 2: INTERMEDIATE</span></div>
+          <p>In Tasker, open the <strong>Vars</strong> tab at the bottom, tap <strong>+</strong>, and enter <code>%HomeAddress</code> as the name. Tap the value field and type your home address, then save.</p>
+        </li>
+        <li class="step" data-diff="intermediate">
+          <div class="step-head"><span class="step-num">2</span><span class="step-title">Create a Work address variable</span><span class="diff-badge intermediate">LEVEL 2: INTERMEDIATE</span></div>
+          <p>Repeat Step 1, naming it <code>%WorkAddress</code> and entering your work address instead.</p>
+        </li>
+      </ol>
+
+      <p><strong>Profile 1: weekday mornings, go to work</strong></p>
+      <ol class="steps">
+        <li class="step" data-diff="intermediate">
+          <div class="step-head"><span class="step-num">1</span><span class="step-title">Add the tag as the first context</span><span class="diff-badge intermediate">LEVEL 2: INTERMEDIATE</span></div>
+          <p><strong>Profiles</strong> tab, tap <strong>+</strong>, then <strong>Event</strong>, then <strong>Plugin</strong>, then <strong>NFC for Tasker</strong>. Scan the car tag as in the Intermediate example.</p>
+        </li>
+        <li class="step" data-diff="advanced">
+          <div class="step-head"><span class="step-num">2</span><span class="step-title">Add a time window as a second context</span><span class="diff-badge advanced">LEVEL 3: ADVANCED</span></div>
+          <p>Back on the profile screen, tap <strong>+</strong> again to add a second context and choose <strong>Time</strong>. Set From to <code>07:00</code> and To to <code>09:30</code>, then untick Saturday and Sunday so only weekdays apply. Tasker requires both contexts to be true together, so this profile now only fires from a weekday-morning tap.</p>
+        </li>
+        <li class="step" data-diff="intermediate">
+          <div class="step-head"><span class="step-num">3</span><span class="step-title">Attach a new task named "Drive to Work"</span><span class="diff-badge intermediate">LEVEL 2: INTERMEDIATE</span></div>
+          <p>Enter the name and tap the checkmark.</p>
+        </li>
+        <li class="step" data-diff="advanced">
+          <div class="step-head"><span class="step-num">4</span><span class="step-title">Start navigation</span><span class="diff-badge advanced">LEVEL 3: ADVANCED</span></div>
+          <p>Add: <strong>System</strong>, then <strong>Send Intent</strong>. Action: <code>android.intent.action.VIEW</code>. Data: <code>google.navigation:q=%WorkAddress</code>. Target: <strong>Activity</strong>. Save.</p>
+        </li>
+        <li class="step" data-diff="basic">
+          <div class="step-head"><span class="step-num">5</span><span class="step-title">Add a spoken confirmation (optional)</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
+          <p>Add: <strong>Alert</strong>, then <strong>Say</strong>, with text <code>Good morning, navigating to work</code>. Save the action, then save the task.</p>
+        </li>
+      </ol>
+
+      <p><strong>Profile 2: weekday evenings, go home</strong></p>
+      <ol class="steps">
+        <li class="step" data-diff="intermediate">
+          <div class="step-head"><span class="step-num">1</span><span class="step-title">Add the same tag as the first context</span><span class="diff-badge intermediate">LEVEL 2: INTERMEDIATE</span></div>
+          <p>Create a second, separate profile the same way: <strong>Profiles</strong>, <strong>+</strong>, <strong>Event</strong>, <strong>Plugin</strong>, <strong>NFC for Tasker</strong>, scanned to the same car tag.</p>
+        </li>
+        <li class="step" data-diff="advanced">
+          <div class="step-head"><span class="step-num">2</span><span class="step-title">Add the evening time window</span><span class="diff-badge advanced">LEVEL 3: ADVANCED</span></div>
+          <p>Add a <strong>Time</strong> context, From <code>16:00</code> To <code>19:00</code>.</p>
+        </li>
+        <li class="step" data-diff="intermediate">
+          <div class="step-head"><span class="step-num">3</span><span class="step-title">Attach a new task named "Drive Home"</span><span class="diff-badge intermediate">LEVEL 2: INTERMEDIATE</span></div>
+          <p>Enter the name and tap the checkmark.</p>
+        </li>
+        <li class="step" data-diff="advanced">
+          <div class="step-head"><span class="step-num">4</span><span class="step-title">Start navigation</span><span class="diff-badge advanced">LEVEL 3: ADVANCED</span></div>
+          <p>Same as Profile 1's Step 4, but Data is <code>google.navigation:q=%HomeAddress</code>.</p>
+        </li>
+        <li class="step" data-diff="basic">
+          <div class="step-head"><span class="step-num">5</span><span class="step-title">Add a spoken confirmation (optional)</span><span class="diff-badge basic">LEVEL 1: BASIC</span></div>
+          <p>Same as Profile 1's Step 5, with text <code>Heading home, starting navigation</code>.</p>
+        </li>
+      </ol>
+
+      <div class="callout">
+        <span class="callout-tag">NOTE</span> Outside both windows, tapping the car tag does nothing, since neither profile's Time context matches. To give it a fallback, add a third profile on the same tag with no Time context and a lower priority (long-press the profile, then Priority, then a smaller number), whose task just opens a maps app with no destination set. Tasker checks profiles sharing a context in priority order, so the two time-specific ones are still tried first.
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="tasker-ideas">
-    <h2 class="section-title"><span class="tag-index">05</span> Tasker Idea Bank</h2>
+    <h2 class="section-title"><span class="tag-index">07</span> Tasker Idea Bank</h2>
     <div class="panel panel-database">
       <p>These require Tasker and its NFC bridge, in addition to a programmed tag. As with the NFC idea bank, each entry is a challenge: expand a card, try it yourself, and reveal hints one at a time if you get stuck. Hints for Tasker entries list the exact profile, task, and actions involved.</p>
 
